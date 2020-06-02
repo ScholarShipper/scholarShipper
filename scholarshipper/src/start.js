@@ -66,7 +66,11 @@ function createAddWindow() {
     pathname: path.join(__dirname, 'addWindow.html'),
     protocol: 'file:',
     slashes: true
-  }))
+  }));
+  // garbage collection for optimization
+  addWindow.on('closed', () => {
+    addWindow = null;
+  })
 }
 
 // create menu template
@@ -94,3 +98,22 @@ const mainMenuTemplate = [
     ]
   }
 ]
+
+// add developer tools
+if (process.env.node_env !== 'production') {
+  mainMenuTemplate.push({
+    label: 'Developer Tools',
+    submenu: [
+      {
+        label: 'Toggle DevTools',
+        accelerator: process.platform == 'darwin' ? 'Command+I' : 'Ctrl+I', 
+        click(item, focusedWindow) {
+          focusedWindow.toggleDevTools();
+        }
+      },
+      {
+        role: 'Reload'
+      }
+    ]
+  })
+}
