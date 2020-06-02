@@ -14,17 +14,33 @@
     <title>ScholarShipper</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <ul></ul>
+    <script>
+      const electron = require('electron');
+      const {ipcRenderer} = electron;
+      const ul = document.querySelector('ul');
+
+      // add cohort 
+      ipcRenderer.on('cohort:add', function(e, cohort) {
+        const li = document.createElement('li');
+        const itemText = document.createTextNode(cohort);
+        li.appendChild(itemText);
+        ul.appendChild(li);
+      });
+
+      // clear cohorts
+      ipcRenderer.on('cohort:clear', function() {
+        ul.innerHTML = '';
+      });
+
+      // remove cohort
+      ul.addEventListener('dblclick', removeCohort);
+      function removeCohort(e) {
+        e.target.remove();
+      }
+    </script>
   </body>
 </html>

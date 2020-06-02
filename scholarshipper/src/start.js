@@ -92,7 +92,10 @@ const mainMenuTemplate = [
         }
       },
       {
-        label: 'Clear Cohort'
+        label: 'Clear Cohort',
+        click() {
+          mainWindow.webContents.send('cohort:clear');
+        }
       },
       {
         label: 'Quit',
