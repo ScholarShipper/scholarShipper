@@ -33,7 +33,7 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "electron": "electron .",
+    "electron": "cross-env NODE_ENV=dev nodemon --exec \"\"electron .\"\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -56,6 +56,8 @@
     ]
   },
   "devDependencies": {
-    "electron-builder": "^22.7.0"
+    "electron-builder": "^22.7.0",
+    "electron-reload": "^1.5.0",
+    "nodemon": "^2.0.4"
   }
 }

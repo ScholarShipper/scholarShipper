@@ -1,10 +1,14 @@
 const electron = require('electron')
-const app = electron.app
 const path = require('path')
+const url = require('url')
 const isDev = require('electron-is-dev')
-const BrowserWindow = electron.BrowserWindow
+require('electron-reload')
+const { app, BrowserWindow, Menu } = electron
 
+// point of entry
 let mainWindow
+// add window
+let addWindow
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -20,14 +24,21 @@ function createWindow() {
     isDev
       ? 'http://localhost:3000'
       : `file://${path.join(__dirname, '../build/index.html')}`,
+    {protocol: 'file: ', slashes: true}
   )
 
   mainWindow.on('closed', () => {
-    mainWindow = null
+    mainWindow = null;
+    // close sub windows when main window is closed
+    app.quit();
   })
+
+  const mainmenu = Menu.buildFromTemplate(mainMenuTemplate);
+  Menu.setApplicationMenu(mainmenu);
 };
 
-app.on('ready', createWindow)
+// listen for when app is ready
+app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -40,3 +51,46 @@ app.on('activate', () => {
     createWindow()
   }
 });
+
+// add new window
+function createAddWindow() {
+  addWindow = new BrowserWindow({
+    width: 300,
+    height: 200,
+    title: 'Add New Cohort',
+    webPreferences: {
+      nodeIntegration: true,
+    },
+  });
+  addWindow.loadURL(url.format({
+    pathname: path.join(__dirname, 'addWindow.html'),
+    protocol: 'file:',
+    slashes: true
+  }))
+}
+
+// create menu template
+const mainMenuTemplate = [
+  {
+    label: 'File',
+    submenu: [
+      {
+        label: 'Add Cohort',
+        click() {
+          createAddWindow();
+        }
+      },
+      {
+        label: 'Clear Cohort'
+      },
+      {
+        label: 'Quit',
+        // quit hotkeys depending on mac or windows
+        accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q', 
+        click() {
+          app.quit();
+        }
+      }
+    ]
+  }
+]
