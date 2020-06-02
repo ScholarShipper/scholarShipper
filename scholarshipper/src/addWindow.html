@@ -11,5 +11,20 @@
     </div>
     <button type="submit">Add</button>
   </form>
+  <script>
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+
+    const form = document.querySelector('form');
+    form.addEventListener('submit', submitForm);
+    
+    // send payload to start.js
+    function submitForm(e) {
+      e.preventDefault();
+      console.log(123);
+      const cohort = document.querySelector('#cohort').value;
+      ipcRenderer.send('cohort:add', cohort)
+    }
+  </script>
 </body>
 </html>

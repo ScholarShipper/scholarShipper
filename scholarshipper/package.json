@@ -1,11 +1,13 @@
 {
   "name": "scholarshipper",
+  "description": "Scholarship Hub for Non-Profits",
+  "author": "ScholarShipper",
   "version": "0.1.0",
   "homepage": "./",
   "private": true,
   "main": "src/start.js",
   "build": {
-    "appId": "ScholarShipper",
+    "appId": "display.menu",
     "directories": {
       "buildResources": "assets"
     },
@@ -24,13 +26,14 @@
     "@types/node": "^12.12.43",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "cross-env": "^7.0.2",
     "electron": "^9.0.1",
     "electron-is-dev": "^1.2.0",
     "express": "^4.17.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "typescript": "^3.7.5"
+    "typescript": "^3.9.3"
   },
   "scripts": {
     "electron": "cross-env NODE_ENV=dev nodemon --exec \"\"electron .\"\"",
@@ -40,6 +43,7 @@
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:3000/",
+  "secure": false,
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -57,6 +61,7 @@
   },
   "devDependencies": {
     "electron-builder": "^22.7.0",
+    "electron-packager": "^14.2.1",
     "electron-reload": "^1.5.0",
     "nodemon": "^2.0.4"
   }

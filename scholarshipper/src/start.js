@@ -3,7 +3,7 @@ const path = require('path')
 const url = require('url')
 const isDev = require('electron-is-dev')
 require('electron-reload')
-const { app, BrowserWindow, Menu } = electron
+const { app, BrowserWindow, Menu, ipcMain } = electron
 
 // point of entry
 let mainWindow
@@ -36,6 +36,13 @@ function createWindow() {
   const mainmenu = Menu.buildFromTemplate(mainMenuTemplate);
   Menu.setApplicationMenu(mainmenu);
 };
+
+// catch cohort:add
+ipcMain.on('cohort:add', function(e, cohort) {
+  console.log(cohort);
+  mainWindow.webContents.send('cohort:add', cohort);
+  addWindow.close();
+})
 
 // listen for when app is ready
 app.on('ready', createWindow);
