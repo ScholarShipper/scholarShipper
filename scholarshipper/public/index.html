@@ -1,21 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
     <title>ScholarShipper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   </head>
   <body>
     <div id="root"></div>
-
 
     <ul></ul>
     <script>
@@ -25,7 +17,9 @@
 
       // add cohort 
       ipcRenderer.on('cohort:add', function(e, cohort) {
+        ul.className = 'collection';
         const li = document.createElement('li');
+        li.className = 'collection-item';
         const itemText = document.createTextNode(cohort);
         li.appendChild(itemText);
         ul.appendChild(li);
@@ -34,12 +28,16 @@
       // clear cohorts
       ipcRenderer.on('cohort:clear', function() {
         ul.innerHTML = '';
+        ul.className = '';
       });
 
       // remove cohort
       ul.addEventListener('dblclick', removeCohort);
       function removeCohort(e) {
         e.target.remove();
+        if (ul.children.length == 0) {
+          ul.className = '';
+        }
       }
     </script>
   </body>

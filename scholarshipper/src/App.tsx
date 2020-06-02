@@ -1,11 +1,18 @@
 import React from 'react';
 import './App.css';
-// import Script from './mainWindow.jsx';
+import logo from './assets/ScholarShipperIcon_.png';
+// import NavBar from './components/NavBar.jsx';
 
 function App() {
   return (
     <div className="App">
-      <h1>ScholarShipper</h1>
+      <nav>
+        <div className="nav-wrapper">
+          <a className="logo">
+            <img src={logo} alt="Logo" height='63' width='63'></img>
+          </a>
+        </div>
+      </nav>
     </div>
   );
 }
