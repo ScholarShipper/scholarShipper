@@ -1,7 +1,23 @@
 {
   "name": "scholarshipper",
+  "description": "Scholarship Hub for Non-Profits",
+  "author": "ScholarShipper",
   "version": "0.1.0",
+  "homepage": "./",
   "private": true,
+  "main": "src/start.js",
+  "build": {
+    "appId": "display.menu",
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "category": "file_system"
+    },
+    "mac": {
+      "category": "file_system2"
+    }
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -10,19 +26,29 @@
     "@types/node": "^12.12.43",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "bulma": "^0.8.2",
+    "cross-env": "^7.0.2",
+    "electron": "^9.0.1",
+    "electron-is-dev": "^1.2.0",
     "express": "^4.17.1",
+    "materialize-css": "^1.0.0-rc.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "typescript": "^3.7.5"
+    "typescript": "^3.9.3"
   },
   "scripts": {
+    "electron": "cross-env NODE_ENV=dev nodemon --exec \"\"electron .\"\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"ScholarShipper\"",    
+    "package-linux": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/icon.png --prune=true --out=release-builds"
   },
   "proxy": "http://localhost:3000/",
+  "secure": false,
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -37,5 +63,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "electron-builder": "^22.7.0",
+    "electron-packager": "^14.2.1",
+    "electron-reload": "^1.5.0",
+    "nodemon": "^2.0.4"
   }
 }

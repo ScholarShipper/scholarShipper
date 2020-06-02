@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Add New Cohort</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+  <div class="container">
+    <form>
+      <div>
+        <label>Cohort</label>
+        <input type="text" id="cohort" autofocus>
+      </div>
+      <button class="btn waves-effect waves-light" type="submit">Add</button>
+    </form>
+  </div>
+
+  <script>
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+
+    const form = document.querySelector('form');
+    form.addEventListener('submit', submitForm);
+    
+    // send payload to start.js
+    function submitForm(e) {
+      e.preventDefault();
+      console.log(123);
+      const cohort = document.querySelector('#cohort').value;
+      ipcRenderer.send('cohort:add', cohort)
+    }
+  </script>
+</body>
+</html>

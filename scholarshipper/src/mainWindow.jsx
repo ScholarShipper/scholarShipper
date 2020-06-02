@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ScholarShipper</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  </head>
-  <body>
-    <div id="root"></div>
 
-    <ul></ul>
-    <script>
       const electron = require('electron');
       const {ipcRenderer} = electron;
       const ul = document.querySelector('ul');
@@ -39,6 +27,3 @@
           ul.className = '';
         }
       }
-    </script>
-  </body>
-</html>
