@@ -12,7 +12,6 @@
     <script>
       const electron = require('electron');
       const {ipcRenderer} = electron;
-      
           ipcRenderer.on('cohort:add', function(e, cohort) {
             ul.className = 'collection';
             const li = document.createElement('li');
@@ -36,6 +35,18 @@
               ul.className = '';
             }
           };
+      </script>
+      <button id="btn-login" onClick="loginNow()"></button>
+      <script>
+        function loginNow(){
+            //.....
+            //assuming the authentication is valid, we want to show now the new window which will be our main window
+            const { ipcRenderer } = require('electron'); //require electron
+
+            //using ipcRenderer, let's call the function in index.js where the function name is `newWindow`, 
+            //the `main.html` is the new html file I want to show, use your own.
+            ipcRenderer.send('studentWindow','../src/studentWindow.html'); 
+        }
       </script>
   </body>
 </html>
