@@ -26,15 +26,24 @@
     "@types/node": "^12.12.43",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "apollo-client": "^2.6.10",
+    "apollo-server-express": "^2.14.1",
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
     "bulma": "^0.8.2",
     "cross-env": "^7.0.2",
     "electron": "^9.0.1",
     "electron-is-dev": "^1.2.0",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "graphql": "^15.0.0",
     "materialize-css": "^1.0.0-rc.2",
+    "pg": "^8.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.25",
     "typescript": "^3.9.3"
   },
   "scripts": {
@@ -43,8 +52,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "dev": "nodemon /server/server.ts",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
-    "package-win": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"ScholarShipper\"",    
+    "package-win": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"ScholarShipper\"",
     "package-linux": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/icon.png --prune=true --out=release-builds"
   },
   "proxy": "http://localhost:3000/",
@@ -65,9 +75,23 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.10.1",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@types/bcrypt": "^3.0.0",
+    "@types/express": "^4.17.6",
+    "@types/express-session": "^1.17.0",
+    "@types/graphql": "^14.5.0",
+    "babel-eslint": "^10.0.0",
+    "babel-loader": "^8.0.0",
+    "dotenv": "^8.2.0",
     "electron-builder": "^22.7.0",
     "electron-packager": "^14.2.1",
     "electron-reload": "^1.5.0",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.3"
   }
 }
