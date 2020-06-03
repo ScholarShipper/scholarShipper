@@ -61,6 +61,10 @@ function App() {
     showAlert('Note Added')
   }
 
+  function deleteNote(_id) {
+    setLogs(logs.filter((item) => item._id !== _id))
+  }
+
   function showAlert(message, variant='success', seconds = 3000) {
     setAlert({
       show: true,
@@ -93,7 +97,7 @@ function App() {
         <tbody>
           {logs.map((log) => {
             //@ts-ignore
-            return <LogItem key={log.id} log={log} />
+            return <LogItem key={log.id} log={log} deleteNote={deleteNote} />
           })}
         </tbody>
       </Table>
