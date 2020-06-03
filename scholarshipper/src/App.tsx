@@ -6,7 +6,8 @@ import logo from './assets/ScholarShipperIcon_.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
-import LogItem from './components/LogItem.js';
+import LogItem from './components/LogItem';
+import AddLogItem from './components/AddLogItem';
 // import NavBar from './components/NavBar.jsx';
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
 
   return (
     <Container>
+        <AddLogItem />
       <Table>
         <thead>
           <tr>
