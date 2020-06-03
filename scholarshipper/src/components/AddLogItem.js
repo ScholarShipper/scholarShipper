@@ -5,27 +5,36 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
-const AddLogItem = () => {
+const AddLogItem = ({ addItem }) => {
   const [note, setNote] = useState('')
-  const [user, setUser] = useState('')
+  const [student, setStudent] = useState('')
   const [priority, setPriority] = useState('')
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    addItem({ note, student, priority })
+
+    setNote('');
+    setStudent('');
+    setPriority('');
+  }
 
   return (
     <Card className='mt-5 mb-3'>
       <Card.Body>
-        <Form>
+        <Form onSubmit={onSubmit}>
           <Row className='my-3'>
             <Col>
-              <Form.Control placeholder='Student Notes' value={note}
+              <Form.Control placeholder='Notes' value={note}
               onChange={(e) => setNote(e.target.value)} />
             </Col>
           </Row>
           <Row>
             <Col>
               <Form.Control
-                placeholder='User'
-                value={user}
-                onChange={(e) => setUser(e.target.value)}
+                placeholder='Student Name'
+                value={student}
+                onChange={(e) => setStudent(e.target.value)}
               />
             </Col>
             <Col>
@@ -41,7 +50,7 @@ const AddLogItem = () => {
           <Row className='my-3'>
             <Col>
               <Button type='submit' variant='primary' block>
-                Add Student
+                Add Student Notes
               </Button>
             </Col>
           </Row>
