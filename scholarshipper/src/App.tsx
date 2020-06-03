@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import logo from './assets/ScholarShipperIcon_.png';
+import Login from './components/Login'
 // import NavBar from './components/NavBar.jsx';
 
 function App() {
@@ -13,8 +14,9 @@ function App() {
           </a>
         </div>
       </nav>
+      <Login />
     </div>
   );
-}
+} 
 
 export default App;
