@@ -2,6 +2,8 @@ const electron = require('electron')
 const path = require('path')
 const url = require('url')
 const isDev = require('electron-is-dev')
+
+
 require('electron-reload')
 const { app, BrowserWindow, Menu, ipcMain } = electron
 
@@ -46,8 +48,10 @@ ipcMain.on('cohort:add', function(e, cohort) {
   // addWindow.close();
 })
 
+
 // listen for when app is ready
 app.on('ready', createWindow);
+
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
