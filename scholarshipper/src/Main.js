@@ -9,8 +9,8 @@ const { app, BrowserWindow, Menu, ipcMain } = electron
 let mainWindow
 // add window
 let addWindow
-// student window
-let studentWindow
+// add student window
+let studentsWindow
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -45,6 +45,19 @@ ipcMain.on('cohort:add', function(e, cohort) {
   mainWindow.webContents.send('cohort:add', cohort);
   // addWindow.close();
 })
+
+exports.openWindow = (filename) => {
+  let win = new BrowserWindow({
+    width: 1100,
+    height: 800,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+  })
+  win.loadURL(`file://${__dirname}/` + filename + `.html`);
+}
+
+
 
 // listen for when app is ready
 app.on('ready', createWindow);
@@ -82,27 +95,25 @@ function createAddWindow() {
   })
 }
 
-function student() {
-  addWindow = new BrowserWindow({
+function createStudentWindow() {
+  studentsWindow = new BrowserWindow({
     width: 300,
     height: 200,
-    title: 'Students',
+    title: 'Add New Cohort',
     webPreferences: {
       nodeIntegration: true,
     },
   });
-  addWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'studentWindow.html'),
+  studentsWindow.loadURL(url.format({
+    pathname: path.join(__dirname, './studentWindow.html'),
     protocol: 'file:',
     slashes: true
   }));
   // garbage collection for optimization
-  addWindow.on('closed', () => {
-    addWindow = null;
+  studentsWindow.on('closed', () => {
+    studentsWindow = null;
   })
 }
-
-
 
 // create menu template
 const mainMenuTemplate = [

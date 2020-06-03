@@ -10,7 +10,7 @@ import Alert from 'react-bootstrap/Alert';
 import LogItem from './components/LogItem';
 import AddLogItem from './components/AddLogItem';
 
-function App() {
+function Student() {
   const [logs, setLogs] = useState([
     {
       _id: 1, 
@@ -80,6 +80,12 @@ function App() {
     }, 3000)
   }
   return (
+    <div className="App">
+      <div className="bar">
+          <a className="logo">
+            <img src={logo} alt="Logo" height='63' width='63'></img>
+          </a>
+      </div>
     <Container>
         <AddLogItem addItem={addItem} />
         {alert.show && <Alert variant="light">{alert.message}</Alert>}
@@ -101,7 +107,8 @@ function App() {
         </tbody>
       </Table>
     </Container>
-  )
-};
+  </div>
+  );
+}
 
-export default App;
+export default Student;
