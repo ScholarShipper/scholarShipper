@@ -12,7 +12,7 @@
     <script>
       const electron = require('electron');
       const {ipcRenderer} = electron;
-
+      
           ipcRenderer.on('cohort:add', function(e, cohort) {
             ul.className = 'collection';
             const li = document.createElement('li');

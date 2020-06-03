@@ -6,6 +6,9 @@
   <title>Students Form</title>
 </head>
 <body>
-  <script>require('./Student.tsx')</script>
+  <script>
+    const ipc = require('electron').ipcRenderer;
+    ipc.send('load-page', 'file://' + __dirname + './Student.tsx');
+  </script>
 </body>
 </html>
