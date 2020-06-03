@@ -7,13 +7,11 @@ const { app, BrowserWindow, Menu, ipcMain } = electron
 
 // point of entry
 let mainWindow
-// add window
-let addWindow
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1100,
+    height: 800,
     webPreferences: {
       nodeIntegration: true,
     },
@@ -37,13 +35,6 @@ function createWindow() {
   Menu.setApplicationMenu(mainmenu);
 };
 
-// catch cohort:add
-ipcMain.on('cohort:add', function(e, cohort) {
-  console.log(cohort);
-  mainWindow.webContents.send('cohort:add', cohort);
-  addWindow.close();
-})
-
 // listen for when app is ready
 app.on('ready', createWindow);
 
@@ -59,44 +50,11 @@ app.on('activate', () => {
   }
 });
 
-// add new window
-function createAddWindow() {
-  addWindow = new BrowserWindow({
-    width: 300,
-    height: 200,
-    title: 'Add New Cohort',
-    webPreferences: {
-      nodeIntegration: true,
-    },
-  });
-  addWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'addWindow.html'),
-    protocol: 'file:',
-    slashes: true
-  }));
-  // garbage collection for optimization
-  addWindow.on('closed', () => {
-    addWindow = null;
-  })
-}
-
 // create menu template
 const mainMenuTemplate = [
   {
     label: 'File',
     submenu: [
-      {
-        label: 'Add Cohort',
-        click() {
-          createAddWindow();
-        }
-      },
-      {
-        label: 'Clear Cohort',
-        click() {
-          mainWindow.webContents.send('cohort:clear');
-        }
-      },
       {
         label: 'Quit',
         // quit hotkeys depending on mac or windows
@@ -126,4 +84,4 @@ if (process.env.node_env !== 'production') {
       }
     ]
   })
-}
+} 

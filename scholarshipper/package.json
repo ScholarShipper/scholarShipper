@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "homepage": "./",
   "private": true,
-  "main": "src/start.js",
+  "main": "src/Main.js",
   "build": {
     "appId": "display.menu",
     "directories": {
@@ -26,6 +26,7 @@
     "@types/node": "^12.12.43",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "bootstrap": "^4.5.0",
     "bulma": "^0.8.2",
     "cross-env": "^7.0.2",
     "electron": "^9.0.1",
@@ -33,6 +34,7 @@
     "express": "^4.17.1",
     "materialize-css": "^1.0.0-rc.2",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "typescript": "^3.9.3"
@@ -44,7 +46,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
-    "package-win": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"ScholarShipper\"",    
+    "package-win": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"ScholarShipper\"",
     "package-linux": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/icon.png --prune=true --out=release-builds"
   },
   "proxy": "http://localhost:3000/",
@@ -52,6 +54,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "eslintIgnore": ["src/*"],
   "browserslist": {
     "production": [
       ">0.2%",
