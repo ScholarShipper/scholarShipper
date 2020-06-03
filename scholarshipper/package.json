@@ -33,9 +33,11 @@
     "electron-is-dev": "^1.2.0",
     "express": "^4.17.1",
     "materialize-css": "^1.0.0-rc.2",
+    "moment": "^2.26.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
+    "react-moment": "^0.9.7",
     "react-scripts": "3.4.1",
     "typescript": "^3.9.3"
   },
@@ -54,7 +56,9 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "eslintIgnore": ["src/*"],
+  "eslintIgnore": [
+    "src/*"
+  ],
   "browserslist": {
     "production": [
       ">0.2%",
