@@ -9,7 +9,6 @@ import Table from 'react-bootstrap/Table';
 import Alert from 'react-bootstrap/Alert';
 import LogItem from './components/LogItem';
 import AddLogItem from './components/AddLogItem';
-// import NavBar from './components/NavBar.jsx';
 
 function App() {
   const [logs, setLogs] = useState([
@@ -81,6 +80,12 @@ function App() {
     }, 3000)
   }
   return (
+    <div className="App">
+      <div className="bar">
+          <a className="logo">
+            <img src={logo} alt="Logo" height='63' width='63'></img>
+          </a>
+      </div>
     <Container>
         <AddLogItem addItem={addItem} />
         {alert.show && <Alert variant="light">{alert.message}</Alert>}
@@ -102,6 +107,7 @@ function App() {
         </tbody>
       </Table>
     </Container>
+  </div>
   );
 }
 

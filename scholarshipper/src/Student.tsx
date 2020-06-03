@@ -9,7 +9,6 @@ import Table from 'react-bootstrap/Table';
 import Alert from 'react-bootstrap/Alert';
 import LogItem from './components/LogItem';
 import AddLogItem from './components/AddLogItem';
-// import NavBar from './components/NavBar.jsx';
 
 function App() {
   const [logs, setLogs] = useState([
@@ -102,7 +101,7 @@ function App() {
         </tbody>
       </Table>
     </Container>
-  );
-}
+  )
+};
 
 export default App;
