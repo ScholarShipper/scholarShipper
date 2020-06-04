@@ -96,10 +96,6 @@
   width: 150px;
 }
 
-.login2 {
-  width: 150px;
-}
-
 .studentApp .login {
   position: absolute;
   bottom: 300px;
@@ -133,3 +129,18 @@
 .cohortTitle {
   font-size: 32px;
 }
+
+.padding1 {
+  width: 150px;
+  left: 390px;
+  top: 150px;
+  position: absolute;
+}
+
+.padding2 {
+  width: 150px;
+  right: 390px;
+  top: 150px;
+  position: absolute;
+}
+

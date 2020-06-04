@@ -19,10 +19,12 @@ function StudentInfo() {
         <div className="cohortTitle">Student Information</div>
         <div>
           <br></br>
-          <LinkContainer to="/Cohort">
+          <br></br>
+          <br></br>
+          <LinkContainer className="padding1" to="/Cohort">
             <button className="btn btn-info btn-lg" aria-disabled="true">View Cohorts</button>
           </LinkContainer>
-          <LinkContainer className="login2" to="/Student">
+          <LinkContainer className="padding2" to="/Student">
             <button className="btn btn-secondary btn-lg">Scholarships</button>
           </LinkContainer>
         </div>
