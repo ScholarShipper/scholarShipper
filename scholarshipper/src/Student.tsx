@@ -100,9 +100,9 @@ function Student() {
     }, 3000)
   }
   return (
-    <div className="App">
+    <div className="studentApp">
       <div className="bar">
-          <a className="logo">
+          <a className="logo2">
             <img src={logo} alt="Logo" height='80' width='80'></img>
           </a>
       </div>
@@ -111,7 +111,7 @@ function Student() {
           <button className="btn btn-info btn-lg">Back to Home</button>
         </LinkContainer>
     
-    <Container>
+    <Container className="container">
         <AddLogItem addItem={addItem} />
         {alert.show && <Alert variant="light">{alert.message}</Alert>}
       <Table>

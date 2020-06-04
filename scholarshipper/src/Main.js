@@ -16,7 +16,7 @@ let studentWindow
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1100,
-    height: 800,
+    height: 725,
     webPreferences: {
       nodeIntegration: true,
     },

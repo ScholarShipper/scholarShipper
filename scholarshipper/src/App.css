@@ -1,5 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;1,900&family=Lato:ital@1&family=Sacramento&display=swap');
+
 .App {
   text-align: center;
+  position: relative;
+  font-family: 'Jost';
+  background-image: 
 }
 
 .App-header {
@@ -17,6 +22,29 @@
   color: #61dafb;
 }
 
+.logo {
+  position: absolute;
+  top: 340px;
+  left: 935px;
+}
+
+.App .helloText {
+  position: absolute;
+  top: 478px;
+  font-size: 100px;
+  font-family: Jost;
+  font-weight: 700;
+  left: 20px;
+}
+
+.helloTextSmall {
+  position: absolute;
+  top: 590px;
+  font-size: 47px;
+  font-family: 'Sacramento';
+  left: 328px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -31,12 +59,44 @@
   text-align: center;
 }
 
-.bar {
+.App .bar {
   background-color: #77D5F6;
-  height: 80px;
+  height: 500px;
+}
+
+
+.studentApp {
+  text-align: center;
+}
+
+.studentApp .bar {
+  background-color: #77D5F6;
 }
 
 .card {
   margin-left: auto;
   margin-right: auto;
+}
+
+.App .login {
+  position: absolute;
+  bottom: 300px;
+  left: 475px;
+  font-family: 'Jost';
+}
+
+.studentApp .login {
+  position: absolute;
+  bottom: 300px;
+  left: 475px;
+  font-family: 'Jost';
+}
+
+.all {
+  font-family: 'Jost';
+  font-size: 20px;
+}
+
+.container {
+  font-size: 120%;
 }

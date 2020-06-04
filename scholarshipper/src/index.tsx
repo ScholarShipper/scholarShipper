@@ -9,7 +9,7 @@ import Student from "./Student";
 
 ReactDOM.render(
   <Router>
-    <div>
+    <div className="all">
       <main>
         <Route exact path="/" component={Home} />
         <Route path="/Student" component={Student} />
