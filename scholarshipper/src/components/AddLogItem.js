@@ -11,14 +11,15 @@ const AddLogItem = ({ addItem }) => {
   const [note, setNote] = useState('');
   const [student, setStudent] = useState('');
   const [priority, setPriority] = useState('');
+  // const [id, setId] = useState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
     addItem({ note, student, priority })
 
     // Send query to db to add student info.
-    const newStudentData = [note, student, priority];
-    ipcRenderer.send('saveStudent', newStudentData);
+    // const newStudentData = [_id, note, student, priority];
+    // ipcRenderer.send('saveStudent', newStudentData);
     
     setNote('');
     setStudent('');
