@@ -7,6 +7,7 @@ import Table from 'react-bootstrap/Table';
 import Alert from 'react-bootstrap/Alert';
 import LogItem from './components/LogItem';
 import AddLogItem from './components/AddLogItem';
+import { LinkContainer } from 'react-router-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 const { ipcRenderer } = window.require('electron');
 
@@ -100,11 +101,16 @@ function Student() {
   }
   return (
     <div className="App">
-      {/* <div className="bar">
+      <div className="bar">
           <a className="logo">
-            <img src={logo} alt="Logo" height='63' width='63'></img>
+            <img src={logo} alt="Logo" height='80' width='80'></img>
           </a>
-      </div> */}
+      </div>
+      <br></br>
+      <LinkContainer to="/">
+          <button className="btn btn-info btn-lg">Back to Home</button>
+        </LinkContainer>
+    
     <Container>
         <AddLogItem addItem={addItem} />
         {alert.show && <Alert variant="light">{alert.message}</Alert>}
