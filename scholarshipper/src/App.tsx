@@ -19,22 +19,28 @@ function App(props) {
       setCohortData([...cohortData]);
     })
   }, []);
+
   console.log('this is cohortData in App:',cohortData)
+  
   return (
     <div className="App">
       <div className="bar">
         <a className="logo">
-          <img src={logo} alt="Logo" height='80' width='80'></img>
+          <img src={logo} alt="Logo" height='150' width='150'></img>
         </a>
       </div>
       <div>
         <br></br>
-        {/* <LinkContainer to="/Student">
-          <button className="btn btn-info btn-lg">Student Form</button>
-        </LinkContainer> */}
+        <LinkContainer className="login" to="/Cohort">
+          <button className="btn btn-info btn-lg">Admin Login</button>
+        </LinkContainer>
       </div>
       <Grid cohortData={cohortData} />
-      {/* <Student /> */}
+      <br></br>
+      <div className="bar">
+        <div className="helloText">ScholarShipper</div>
+        <div className="helloTextSmall">...to college and beyond</div>
+      </div>
     </div>
   );
 } 
