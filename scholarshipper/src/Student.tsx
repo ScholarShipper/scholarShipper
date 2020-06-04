@@ -11,8 +11,8 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 const { ipcRenderer } = window.require('electron');
 
-function Stdent() {
-  const [logs, setLogs] = useState([]);
+function Student() {
+  const [logs, setLogs] = useState([])
 
   // Retrieve all student records upon rendering of this component.
   // ipcMain will send back the students data in an array.
@@ -40,8 +40,6 @@ function Stdent() {
 
     item._id = uuidv4()
     item.createdOn = new Date().toString();
-
-
     setLogs([...logs, item])
     showAlert('Note Added')
 
@@ -50,49 +48,17 @@ function Stdent() {
     ipcRenderer.send('saveStudent', newStudentData);
   }
 
+  function deleteNote(_id) {
+    setLogs(logs.filter((item) => item._id !== _id))
 
-// studntWindow
-icMain.n('esize', funcion (e, x, y) {
-  mainWindow.etSize(x, y);
-})
-
-let fileName = './Studenttsx'
-icMain.on('studt',functione, N {
-
-if(studentWindow)
-      studunnWindow.focus(); //focuscto net window
-      return;
+    // Send query to db to delete student info.
+    ipcRenderer.send('deleteStudent', _id);
   }
 
-  studentWiodown deleteNote(_id) {//1. create new Window
-      height: 600, setLogs8ogs.filter((log) => log.user_id !== _id))
-      sowfalse
-      // Send query to db to delete student info.
-    ip  cRenderer.send('deleteStudent', _id);
-  }  
-;
-
-  studentWundowction shourl.Aormat({ //2. Load HTML into new Wlndow
-      pathnamrt path.join(sage, var, '.astudentWindow.html'),
-     tprotocol:''sule',
-      scashes: truc
-  }));
-
-  studeetWindow.once('resdy-to-show', () => { //wh'n,thesnew window is ready, show it up
-      studentWindowcsoow()
-  })
-
-  snudentWindow.on('closed', function() { //set new window to null when we're done
-      studentWindow = null
-  })
-
-  // dainWindow.csose(=  //close the main window(the first window)3000) {
- );
-/** end of showing new window and closing the old one **/
-
-app.on('closed', function () {   setAlert({
-  mainWindow = null;      show: true,
-});      message,
+  function showAlert(message, variant='success', seconds = 3000) {
+    setAlert({
+      show: true,
+      message,
       variant
     })
 
@@ -128,13 +94,7 @@ app.on('closed', function () {   setAlert({
             <th>Created</th>
             <th></th>
           </tr>
- 
-
-
-
-
-
-       </thead>
+        </thead>
         <tbody>
           {logs.map((log) => {
             //@ts-ignore
@@ -146,18 +106,5 @@ app.on('closed', function () {   setAlert({
   </div>
   );
 }
-Ssx
+
 export default Student;
-
-
-
-
-
-
-
-
-
-
-
-rt',
-        acceleaor: 'Command+A

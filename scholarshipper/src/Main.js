@@ -40,16 +40,12 @@ function createWindow() {
   Menu.setApplicationMenu(mainmenu);
 };
 
-
-
 // catch cohort:add
 ipcMain.on('cohort:add', function(e, cohort) {
   console.log(cohort);
   mainWindow.webContents.send('cohort:add', cohort);
   // addWindow.close();
 })
-
-
 
 // studentWindow
 ipcMain.on('resize', function (e, x, y) {
@@ -130,12 +126,6 @@ function createAddWindow() {
   })
 }
 
-
-
-
-
-
-
 function createStudentWindow() {
   studentsWindow = new BrowserWindow({
     width: 300,
@@ -155,121 +145,6 @@ function createStudentWindow() {
     studentsWindow = null;
   })
 }
-
-
-
-
-
-
-
-
-
-
-
-
-// create menu template
-const mainMenuTemplate = [
-  {
-    label: 'File',
-    submenu: [
-      {
-        label: 'Add Cohort',
-        accelerator: 'Command+A',
-  }));
-  // garbage collection for optimization
-  addWindow.on('closed', () => {
-    addWindow = null;
-  })
-}
-
-
-
-
-
-
-
-function createStudentWindow() {
-  studentsWindow = new BrowserWindow({
-    width: 300,
-    height: 200,
-    title: 'Add New Cohort',
-    webPreferences: {
-      nodeIntegration: true,
-    },
-  });
-  studentsWindow.loadURL(url.format({
-    pathname: path.join(__dirname, './Student.tsx'),
-    protocol: 'file:',
-    slashes: true
-  }));
-  // garbage collection for optimization
-  studentsWindow.on('closed', () => {
-    studentsWindow = null;
-  })
-}
-
-
-
-
-
-
-
-
-
-
-
-
-// create menu template
-const mainMenuTemplate = [
-  {
-    label: 'File',
-    submenu: [
-      {
-        label: 'Add Cohort',
-        accelerator: 'Command+A',
-  }));
-  // garbage collection for optimization
-  addWindow.on('closed', () => {
-    addWindow = null;
-  })
-}
-
-
-
-
-
-
-
-function createStudentWindow() {
-  studentsWindow = new BrowserWindow({
-    width: 300,
-    height: 200,
-    title: 'Add New Cohort',
-    webPreferences: {
-      nodeIntegration: true,
-    },
-  });
-  studentsWindow.loadURL(url.format({
-    pathname: path.join(__dirname, './Student.tsx'),
-    protocol: 'file:',
-    slashes: true
-  }));
-  // garbage collection for optimization
-  studentsWindow.on('closed', () => {
-    studentsWindow = null;
-  })
-}
-
-
-
-
-
-
-
-
-
-
-
 
 // create menu template
 const mainMenuTemplate = [
@@ -326,13 +201,12 @@ ipcMain.on('getAllStudents', (event, data) => {
   
   db.query(getAllStudentsQuery)
     .then (students => {
-      // console.log('retrieving students from DB:', students.rows);
       event.sender.send('gotAllStudents', students.rows);
     })
     .catch(e => {
       console.log("Error while fetching students from DB: ", e);
     });
-}) 
+})
 
 // Catch saveStudent renderer process from Student.tsx
 ipcMain.on('saveStudent', (event, data) => {
