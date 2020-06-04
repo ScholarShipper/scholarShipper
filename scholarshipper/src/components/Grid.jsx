@@ -18,6 +18,16 @@ const Grid = (props) => {
         <Col><Cards /></Col>
         <Col><Cards /></Col>
       </Row>
+      <Row>
+        <Col><Cards /></Col>
+        <Col><Cards /></Col>
+        <Col><Cards /></Col>
+      </Row>
+      <Row>
+        <Col><Cards /></Col>
+        <Col><Cards /></Col>
+        <Col><Cards /></Col>
+      </Row>
     </Container>
   )
 }

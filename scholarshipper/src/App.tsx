@@ -18,10 +18,11 @@ function App() {
         </div>
         <div>
         <br></br>
-        <LinkContainer to="/Student">
+        {/* <LinkContainer to="/Student">
           <button className="btn btn-info btn-lg">Student Form</button>
-        </LinkContainer>
+        </LinkContainer> */}
         </div>
+        <Grid />
     </div>
   );
 } 
