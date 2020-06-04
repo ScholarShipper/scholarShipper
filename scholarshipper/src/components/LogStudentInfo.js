@@ -21,8 +21,8 @@ const LogStudentInfo = (props) => {
       <td><Badge variant={setVariant()} className='p-2'>{props.log.priority?.charAt(0).toUpperCase() + props.log.priority?.slice(1)}</Badge></td>
       <td>{props.log.student}</td>
       <td>{SCHOOL}</td>
-      <td>{START YEAR}</td>
-      <td>{COHORT ID}</td>
+      <td>{START_YEAR}</td>
+      <td>{COHORT_ID}</td>
       <td>{props.log.note}</td>
     </tr>
   )

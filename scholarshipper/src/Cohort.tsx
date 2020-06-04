@@ -20,7 +20,7 @@ function Cohort() {
         <div>
           <br></br>
           <LinkContainer className="login" to="/Student">
-            <button className="btn btn-secondary btn-lg">Scholarships</button>
+            <button className="btn btn-secondary btn-lg">Scholarship Priority</button>
           </LinkContainer>
         </div>
         <br></br>
