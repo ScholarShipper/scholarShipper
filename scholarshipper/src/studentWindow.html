@@ -8,8 +8,10 @@
 <body>
   <h1>hi</h1>
   <script>
-    const ipc = require('electron').ipcRenderer;
-    ipc.send('load-page', 'file://' + __dirname + './Student.tsx');
-  </script>
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+    require('./Student.tsx')
+    </script>
+    <Student />
 </body>
 </html>

@@ -9,6 +9,7 @@ import Table from 'react-bootstrap/Table';
 import Alert from 'react-bootstrap/Alert';
 import LogItem from './components/LogItem';
 import AddLogItem from './components/AddLogItem';
+import { Link } from 'react-router-dom';
 
 function Student() {
   const [logs, setLogs] = useState([
@@ -83,9 +84,10 @@ function Student() {
     <div className="App">
       <div className="bar">
           <a className="logo">
-            <img src={logo} alt="Logo" height='63' width='63'></img>
+            <img src={logo} alt="Logo" height='80' width='80'></img>
           </a>
       </div>
+    <Link className="App-link" to="/">Link</Link>
     <Container>
         <AddLogItem addItem={addItem} />
         {alert.show && <Alert variant="light">{alert.message}</Alert>}

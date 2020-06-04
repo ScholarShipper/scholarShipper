@@ -12,8 +12,6 @@ let addWindow
 // add student window
 let studentWindow
 
-let newWindow = null;
-
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1100,
@@ -57,7 +55,7 @@ ipcMain.on('resize', function (e, x, y) {
   mainWindow.setSize(x, y);
 })
 
-let fileName = './studentWindow.html'
+let fileName = './Student.tsx'
 ipcMain.on('studentWindow', function (e, fileName) {
 
   if(studentWindow){
@@ -71,7 +69,7 @@ ipcMain.on('studentWindow', function (e, fileName) {
       webPreferences: {
         nodeIntegration: true,
       },
-  }); 
+  });
 
   studentWindow.loadURL(url.format({ //2. Load HTML into new Window
       pathname: path.join(__dirname, './studentWindow.html'),
@@ -147,7 +145,7 @@ function createStudentWindow() {
     },
   });
   studentsWindow.loadURL(url.format({
-    pathname: path.join(__dirname, './studentWindow.html'),
+    pathname: path.join(__dirname, './Student.tsx'),
     protocol: 'file:',
     slashes: true
   }));
@@ -175,6 +173,7 @@ const mainMenuTemplate = [
     submenu: [
       {
         label: 'Add Cohort',
+        accelerator: 'Command+A',
         click() {
           createAddWindow();
         }

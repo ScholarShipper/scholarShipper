@@ -4,12 +4,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ScholarShipper</title>
-    <script src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+
   </head>
   <body>
     <div id="root"></div>
     <ul></ul>
-    <script>
+    <!-- <script>
+      const ul = document.querySelector('ul')
       const electron = require('electron');
       const {ipcRenderer} = electron;
           ipcRenderer.on('cohort:add', function(e, cohort) {
@@ -35,18 +42,27 @@
               ul.className = '';
             }
           };
-      </script>
-      <button id="btn-login" onClick="loginNow()"></button>
+      </script> -->
+      <!-- <br></br>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Cohort</h5>
+            <p class="card-text"># goes here</p>
+            <a class="btn btn-primary btn-sm btn-info" href="#" role="button" onClick="studentPopUp()">Link</a>
+          </div>
+        </div>
+      <br></br>  -->
       <script>
-        function loginNow(){
-            //.....
-            //assuming the authentication is valid, we want to show now the new window which will be our main window
-            const { ipcRenderer } = require('electron'); //require electron
+      //   function studentPopUp(){
+      //       //.....
+      //       //assuming the authentication is valid, we want to show now the new window which will be our main window
+      //       const { ipcRenderer } = require('electron'); //require electron
 
-            //using ipcRenderer, let's call the function in index.js where the function name is `newWindow`, 
-            //the `main.html` is the new html file I want to show, use your own.
-            ipcRenderer.send('studentWindow','../src/studentWindow.html'); 
-        }
-      </script>
+      //       //using ipcRenderer, let's call the function in index.js where the function name is `newWindow`, 
+      //       //the `main.html` is the new html file I want to show, use your own.
+      //       ipcRenderer.send('studentWindow','./Student.tsx'); 
+      //   }
+
+      // </script>
   </body>
 </html>
