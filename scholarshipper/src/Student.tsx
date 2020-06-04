@@ -12,36 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
 const { ipcRenderer } = window.require('electron');
 
 function Student() {
-  const [logs, setLogs] = useState([
-    // {
-    //   _id: 1, 
-    //   note: 'This kid is insane',
-    //   priority: 'low',
-    //   student: 'Brian',
-    //   created: new Date().toString(),
-    // },
-    // {
-    //   _id: 2, 
-    //   note: 'Smaaaht',
-    //   priority: 'high',
-    //   student: 'Brian',
-    //   created: new Date().toString(),
-    // },
-    // {
-    //   _id: 3, 
-    //   note: 'Okay, not too bad',
-    //   priority: 'moderate',
-    //   student: 'Brian',
-    //   created: new Date().toString(),
-    // },
-    // {
-    //   _id: 4, 
-    //   note: 'This kid is insane',
-    //   priority: 'low',
-    //   student: 'Brian',
-    //   created: new Date().toString(),
-    // },
-  ])
+  const [logs, setLogs] = useState([])
 
   // Retrieve all student records upon rendering of this component.
   // ipcMain will send back the students data in an array.

@@ -40,16 +40,12 @@ function createWindow() {
   Menu.setApplicationMenu(mainmenu);
 };
 
-
-
 // catch cohort:add
 ipcMain.on('cohort:add', function(e, cohort) {
   console.log(cohort);
   mainWindow.webContents.send('cohort:add', cohort);
   // addWindow.close();
 })
-
-
 
 // studentWindow
 ipcMain.on('resize', function (e, x, y) {
@@ -130,12 +126,6 @@ function createAddWindow() {
   })
 }
 
-
-
-
-
-
-
 function createStudentWindow() {
   studentsWindow = new BrowserWindow({
     width: 300,
@@ -155,17 +145,6 @@ function createStudentWindow() {
     studentsWindow = null;
   })
 }
-
-
-
-
-
-
-
-
-
-
-
 
 // create menu template
 const mainMenuTemplate = [
@@ -222,7 +201,6 @@ ipcMain.on('getAllStudents', (event, data) => {
   
   db.query(getAllStudentsQuery)
     .then (students => {
-      console.log('retrieving students from DB:', students.rows);
       event.sender.send('gotAllStudents', students.rows);
     })
     .catch(e => {
