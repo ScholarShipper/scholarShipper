@@ -1,5 +1,5 @@
+export{}
 const db = require('../models/models');
-
 const studentControllers = <any>{};
 
 studentControllers.getStudents = (req, res, next) => {
@@ -21,3 +21,4 @@ studentControllers.getStudents = (req, res, next) => {
 }
 
 
+module.exports = studentControllers
