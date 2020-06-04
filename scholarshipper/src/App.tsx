@@ -24,7 +24,7 @@ function App() {
         </LinkContainer> */}
         </div>
         <Grid />
-        <Student />
+        {/* <Student /> */}
     </div>
   );
 } 

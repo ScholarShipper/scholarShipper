@@ -7,12 +7,9 @@ import Table from 'react-bootstrap/Table';
 import Alert from 'react-bootstrap/Alert';
 import LogItem from './components/LogItem';
 import AddLogItem from './components/AddLogItem';
-<<<<<<< HEAD
 import { LinkContainer } from 'react-router-bootstrap';
-=======
 import { v4 as uuidv4 } from 'uuid';
 const { ipcRenderer } = window.require('electron');
->>>>>>> 99a835e63816842bd5c833b7635eb22b350bbfa0
 
 function Student() {
   const [logs, setLogs] = useState([
@@ -104,7 +101,7 @@ function Student() {
   }
   return (
     <div className="App">
-      {/* <div className="bar">
+      <div className="bar">
           <a className="logo">
             <img src={logo} alt="Logo" height='80' width='80'></img>
           </a>
@@ -113,7 +110,7 @@ function Student() {
       <LinkContainer to="/">
           <button className="btn btn-info btn-lg">Back to Home</button>
         </LinkContainer>
-      </div> */}
+    
     <Container>
         <AddLogItem addItem={addItem} />
         {alert.show && <Alert variant="light">{alert.message}</Alert>}
