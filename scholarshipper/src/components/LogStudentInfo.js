@@ -5,7 +5,6 @@ import Moment from 'react-moment';
 import { LinkContainer } from 'react-router-bootstrap';
 
 const LogStudentInfo = (props) => {
-  console.log('props (LogItem):', props)
 
   const setVariant = () => {
     if (props.log.priority === 'high') {

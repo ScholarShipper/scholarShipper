@@ -39,9 +39,6 @@ function StudentInfo() {
             </tr>
           </thead>
         </Table>
-        <div>
-          
-        </div>
     </div>
   );
 } 
