@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import logo from './assets/ScholarShipperIcon_.png';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -8,7 +8,10 @@ const os = require('os');
 
 function StudentInfo() {
 
-  const innerText = path.join(os.homedir(), 'image')
+  const innerText = path.join(os.homedir(), 'studentDoc')
+  // const [file, setFile] = useState('');
+  // const [filename, setFilename] = useState('Choose File')
+
 
   return (
     <div className="cohortApp">
