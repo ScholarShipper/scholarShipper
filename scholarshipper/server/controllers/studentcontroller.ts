@@ -1,4 +1,5 @@
 export{}
+// @ts-ignore
 const db = require('../models/models');
 const studentControllers = <any>{};
 
@@ -10,7 +11,7 @@ studentControllers.getStudents = (req, res, next) => {
   ON s.cohort_id = c.cohort_id
   WHERE s.start_year = $1`
 
-  const cohort = [req.params.cohort_id]
+  const cohort = [req.params.cohort_id] 
 
   db.query(studentsGetReq, cohort)
   .then((students)=> {
@@ -20,5 +21,5 @@ studentControllers.getStudents = (req, res, next) => {
   .catch(err => console.log(`error: ${err}`))
 }
 
-
+// @ts-ignore
 module.exports = studentControllers
