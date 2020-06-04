@@ -11,7 +11,7 @@ let mainWindow
 // add window
 let addWindow
 // add student window
-let studentsWindow
+let studentWindow
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -47,18 +47,48 @@ ipcMain.on('cohort:add', function(e, cohort) {
   // addWindow.close();
 })
 
-exports.openWindow = (filename) => {
-  let win = new BrowserWindow({
-    width: 1100,
-    height: 800,
-    webPreferences: {
-      nodeIntegration: true,
-    },
+// studentWindow
+ipcMain.on('resize', function (e, x, y) {
+  mainWindow.setSize(x, y);
+})
+
+let fileName = './Student.tsx'
+ipcMain.on('studentWindow', function (e, fileName) {
+
+  if(studentWindow){
+      studentWindow.focus(); //focus to new window
+      return;
+  }
+
+  studentWindow = new BrowserWindow({//1. create new Window
+      height: 600, width: 800,
+      show: false,
+      webPreferences: {
+        nodeIntegration: true,
+      },
+  });
+
+  studentWindow.loadURL(url.format({ //2. Load HTML into new Window
+      pathname: path.join(__dirname, './studentWindow.html'),
+      protocol: 'file',
+      slashes: true
+  }));
+
+  studentWindow.once('ready-to-show', () => { //when the new window is ready, show it up
+      studentWindow.show()
   })
-  win.loadURL(`file://${__dirname}/` + filename + `.html`);
-}
 
+  studentWindow.on('closed', function() { //set new window to null when we're done
+      studentWindow = null
+  })
 
+  // mainWindow.close(); //close the main window(the first window)
+});
+/** end of showing new window and closing the old one **/
+
+app.on('closed', function () {
+  mainWindow = null;
+});
 
 // listen for when app is ready
 app.on('ready', createWindow);
@@ -106,7 +136,7 @@ function createStudentWindow() {
     },
   });
   studentsWindow.loadURL(url.format({
-    pathname: path.join(__dirname, './studentWindow.html'),
+    pathname: path.join(__dirname, './Student.tsx'),
     protocol: 'file:',
     slashes: true
   }));
@@ -123,6 +153,7 @@ const mainMenuTemplate = [
     submenu: [
       {
         label: 'Add Cohort',
+        accelerator: 'Command+A',
         click() {
           createAddWindow();
         }
@@ -170,7 +201,6 @@ ipcMain.on('getAllStudents', (event, data) => {
   
   db.query(getAllStudentsQuery)
     .then (students => {
-      console.log('retrieving students from DB:', students.rows);
       event.sender.send('gotAllStudents', students.rows);
     })
     .catch(e => {

@@ -18,10 +18,10 @@ const LogItem = (props) => {
 
   return (
     <tr>
-      <td><Badge variant={setVariant()} className='p-2'>{props.log.priority?.charAt(0).toUpperCase() + props.log.priority?.slice(1)}</Badge></td>
-      <td>{props.log.note}</td>
-      <td>{props.log.student}</td>
-      <td><Moment format='MMMM Do YYYY, h:mm:ss a'>{new Date(props.log.created)}</Moment></td>
+      <td><Badge variant={setVariant()} className='p-2'>{props.log.priority.charAt(0).toUpperCase() + props.log.priority.slice(1)}</Badge></td>
+      <td>{props.log.notes}</td>
+      <td>{props.log.first_name}</td>
+      <td><Moment format='MMMM Do YYYY, h:mm:ss a'>{new Date(props.log.created_on)}</Moment></td>
       <td>
         <Button variant='danger' size='sm' onClick={() => props.deleteNote(props.log.user_id)}>x</Button>
       </td>
