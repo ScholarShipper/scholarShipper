@@ -8,7 +8,6 @@ import Home from "./App";
 import Student from "./Student";
 import Cohort from "./Cohort";
 import StudentInfo from "./StudentInfo";
-// import StudentInfo from "./StudentInfo.tsx";
 
 ReactDOM.render(
   <Router>

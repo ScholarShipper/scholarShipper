@@ -1,9 +1,7 @@
 import React from 'react';
 import './App.css';
 import logo from './assets/ScholarShipperIcon_.png';
-import Grid from './components/Grid.jsx';
 import { LinkContainer } from 'react-router-bootstrap';
-import Student from './Student'
 
 function App() {
   return (

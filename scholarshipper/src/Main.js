@@ -10,13 +10,12 @@ const db = require('./models/models.ts')
 let mainWindow
 // add window
 let addWindow
-// add student window
-let studentWindow
 
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1100,
     height: 725,
+    // icon: `${__dirname}/assets/icons/ScholarShipperIcon_.png`,
     webPreferences: {
       nodeIntegration: true,
     },
@@ -40,8 +39,6 @@ function createWindow() {
   Menu.setApplicationMenu(mainmenu);
 };
 
-
-
 // catch cohort:add
 ipcMain.on('cohort:add', function(e, cohort) {
   console.log(cohort);
@@ -49,46 +46,10 @@ ipcMain.on('cohort:add', function(e, cohort) {
   // addWindow.close();
 })
 
-
-
 // studentWindow
 ipcMain.on('resize', function (e, x, y) {
   mainWindow.setSize(x, y);
 })
-
-// let fileName = './Student.tsx'
-// ipcMain.on('studentWindow', function (e, fileName) {
-
-//   if(studentWindow){
-//       studentWindow.focus(); //focus to new window
-//       return;
-//   }
-
-//   studentWindow = new BrowserWindow({//1. create new Window
-//       height: 600, width: 800,
-//       show: false,
-//       webPreferences: {
-//         nodeIntegration: true,
-//       },
-//   });
-
-//   studentWindow.loadURL(url.format({ //2. Load HTML into new Window
-//       pathname: path.join(__dirname, './studentWindow.html'),
-//       protocol: 'file',
-//       slashes: true
-//   }));
-
-//   studentWindow.once('ready-to-show', () => { //when the new window is ready, show it up
-//       studentWindow.show()
-//   })
-
-//   studentWindow.on('closed', function() { //set new window to null when we're done
-//       studentWindow = null
-//   })
-
-//   // mainWindow.close(); //close the main window(the first window)
-// });
-// /** end of showing new window and closing the old one **/
 
 app.on('closed', function () {
   mainWindow = null;
@@ -129,43 +90,6 @@ function createAddWindow() {
     addWindow = null;
   })
 }
-
-
-
-
-
-
-
-// function createStudentWindow() {
-//   studentsWindow = new BrowserWindow({
-//     width: 300,
-//     height: 200,
-//     title: 'Add New Cohort',
-//     webPreferences: {
-//       nodeIntegration: true,
-//     },
-//   });
-//   studentsWindow.loadURL(url.format({
-//     pathname: path.join(__dirname, './Student.tsx'),
-//     protocol: 'file:',
-//     slashes: true
-//   }));
-//   // garbage collection for optimization
-//   studentsWindow.on('closed', () => {
-//     studentsWindow = null;
-//   })
-// }
-
-
-
-
-
-
-
-
-
-
-
 
 // create menu template
 const mainMenuTemplate = [
@@ -211,6 +135,18 @@ if (process.env.node_env !== 'production') {
       },
       {
         role: 'Reload'
+      },
+      {
+        label: 'Alan'
+      },
+      {
+        label: 'Brian'
+      },
+      {
+        label: 'Marcus'
+      },
+      {
+        label: 'Todd'
       }
     ]
   })

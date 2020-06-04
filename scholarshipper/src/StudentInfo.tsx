@@ -21,6 +21,7 @@ function StudentInfo() {
           <br></br>
           <br></br>
           <br></br>
+          <br></br>
           <LinkContainer className="padding1" to="/Cohort">
             <button className="btn btn-info btn-lg" aria-disabled="true">View Cohorts</button>
           </LinkContainer>
@@ -41,6 +42,37 @@ function StudentInfo() {
             </tr>
           </thead>
         </Table>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <body>
+          <div className="container">
+            <form id="image-form">
+              <div className="file-field input-field">
+                  <input type="file" id="img" />
+                <div className="file-path-wrapper">
+                  <input
+                    className="file-path validate"
+                    type="text"
+                    placeholder="Upload file"
+                  />
+                </div>
+              </div>
+            </form>
+            <div className="card output">
+              <div className="card-content">
+                Output Path: <span id="output-path"></span>
+              </div>
+            </div>
+          </div>
+        </body>
     </div>
   );
 } 

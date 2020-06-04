@@ -27,10 +27,6 @@
   left: 935px;
 }
 
-.logo3 {
-
-}
-
 .App .helloText {
   position: absolute;
   top: 478px;
@@ -44,7 +40,7 @@
   position: absolute;
   top: 590px;
   font-size: 47px;
-  font-family: 'Sacramento';
+  font-family: Sacramento;
   left: 328px;
 }
 
@@ -69,6 +65,11 @@
 
 .cohortApp {
   text-align: center;
+  font-family: Jost;
+}
+
+.container {
+  font-family: Jost;
 }
 
 .studentApp {
@@ -133,14 +134,14 @@
 .padding1 {
   width: 150px;
   left: 390px;
-  top: 150px;
+  top: 170px;
   position: absolute;
 }
 
 .padding2 {
   width: 150px;
   right: 390px;
-  top: 150px;
+  top: 170px;
   position: absolute;
 }
 
