@@ -3,6 +3,7 @@ import './App.css';
 import logo from './assets/ScholarShipperIcon_.png';
 import Grid from './components/Grid.jsx';
 import { LinkContainer } from 'react-router-bootstrap';
+import Student from './Student'
 // const electron = require('electron')
 // const path = require('path')
 // const BrowserWindow = electron.remote.BrowserWindow
@@ -23,6 +24,7 @@ function App() {
         </LinkContainer> */}
         </div>
         <Grid />
+        <Student />
     </div>
   );
 } 

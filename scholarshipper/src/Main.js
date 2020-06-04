@@ -4,6 +4,7 @@ const url = require('url')
 const isDev = require('electron-is-dev')
 require('electron-reload')
 const { app, BrowserWindow, Menu, ipcMain } = electron
+const db = require('./models/models.ts')
 
 // point of entry
 let mainWindow
@@ -214,3 +215,56 @@ if (process.env.node_env !== 'production') {
     ]
   })
 } 
+
+// Catch getAllStudents renderer process from Student.tsx
+ipcMain.on('getAllStudents', (event, data) => {
+  const getAllStudentsQuery = `SELECT * FROM students`
+  
+  db.query(getAllStudentsQuery)
+    .then (students => {
+      console.log('retrieving students from DB:', students.rows);
+      event.sender.send('gotAllStudents', students.rows);
+    })
+    .catch(e => {
+      console.log("Error while fetching students from DB: ", e);
+    });
+})
+
+// Catch saveStudent renderer process from Student.tsx
+ipcMain.on('saveStudent', (event, data) => {
+  console.log('data in ipcMain: saveStudent', data);
+  
+  // Save data from renderer process to db.
+  const values = data;
+  
+  const addStudentQuery = `INSERT INTO students(user_id, notes, first_name, priority, created_on)
+  VALUES ($1, $2, $3, $4, $5)`
+  
+  db.query(addStudentQuery, values)
+    .then(students => {
+      console.log('saved student into DB')
+      
+    })
+    .catch(e => {
+      console.log("Error while saving to DB: ", e);
+    })
+})
+
+// Catch deleteStudent renderer process from Student.tsx
+ipcMain.on('deleteStudent', (event, data) => {
+  console.log('data in ipcMain: deleteStudent', data);
+  
+  const value = [data]
+  // Save data from renderer process to db.  
+  const deleteStudentQuery = `DELETE FROM students WHERE user_id = ($1)`
+  
+  db.query(deleteStudentQuery, value)
+    .then(students => {
+      console.log(`deleted student ${value} from DB`)
+    })
+    .catch(e => {
+      console.log("Error while deleting from DB: ", e);
+    })
+})
+
+

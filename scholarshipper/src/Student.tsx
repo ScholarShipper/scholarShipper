@@ -1,6 +1,4 @@
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-/* eslint-disable no-unused-expressions */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import logo from './assets/ScholarShipperIcon_.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,40 +7,57 @@ import Table from 'react-bootstrap/Table';
 import Alert from 'react-bootstrap/Alert';
 import LogItem from './components/LogItem';
 import AddLogItem from './components/AddLogItem';
+<<<<<<< HEAD
 import { LinkContainer } from 'react-router-bootstrap';
+=======
+import { v4 as uuidv4 } from 'uuid';
+const { ipcRenderer } = window.require('electron');
+>>>>>>> 99a835e63816842bd5c833b7635eb22b350bbfa0
 
 function Student() {
   const [logs, setLogs] = useState([
-    {
-      _id: 1, 
-      note: 'This kid is insane',
-      priority: 'low',
-      student: 'Brian',
-      created: new Date().toString(),
-    },
-    {
-      _id: 2, 
-      note: 'Smaaaht',
-      priority: 'high',
-      student: 'Brian',
-      created: new Date().toString(),
-    },
-    {
-      _id: 3, 
-      note: 'Okay, not too bad',
-      priority: 'moderate',
-      student: 'Brian',
-      created: new Date().toString(),
-    },
-    {
-      _id: 4, 
-      note: 'This kid is insane',
-      priority: 'low',
-      student: 'Brian',
-      created: new Date().toString(),
-    },
+    // {
+    //   _id: 1, 
+    //   note: 'This kid is insane',
+    //   priority: 'low',
+    //   student: 'Brian',
+    //   created: new Date().toString(),
+    // },
+    // {
+    //   _id: 2, 
+    //   note: 'Smaaaht',
+    //   priority: 'high',
+    //   student: 'Brian',
+    //   created: new Date().toString(),
+    // },
+    // {
+    //   _id: 3, 
+    //   note: 'Okay, not too bad',
+    //   priority: 'moderate',
+    //   student: 'Brian',
+    //   created: new Date().toString(),
+    // },
+    // {
+    //   _id: 4, 
+    //   note: 'This kid is insane',
+    //   priority: 'low',
+    //   student: 'Brian',
+    //   created: new Date().toString(),
+    // },
   ])
 
+  // Retrieve all student records upon rendering of this component.
+  // ipcMain will send back the students data in an array.
+  useEffect(() => {
+    ipcRenderer.send('getAllStudents');
+    ipcRenderer.on('gotAllStudents', (event, studentsData) => {
+      // console.log('studentsData in Student.tsx:', studentsData);
+
+      // Save studentsData to state.
+      setLogs([...studentsData]);
+    })
+  }, []);
+  
   const [alert, setAlert] = useState({
     show: false,
     message: '',
@@ -55,14 +70,21 @@ function Student() {
       return false
     }
 
-    item._id = Math.floor(Math.random() * 90000) + 10000
-    item.created = new Date().toString();
+    item._id = uuidv4()
+    item.createdOn = new Date().toString();
     setLogs([...logs, item])
     showAlert('Note Added')
+
+    // Send query to db to add student info.
+    const newStudentData = [item._id, item.note, item.student, item.priority, item.createdOn];
+    ipcRenderer.send('saveStudent', newStudentData);
   }
 
   function deleteNote(_id) {
     setLogs(logs.filter((item) => item._id !== _id))
+
+    // Send query to db to delete student info.
+    ipcRenderer.send('deleteStudent', _id);
   }
 
   function showAlert(message, variant='success', seconds = 3000) {
@@ -82,7 +104,7 @@ function Student() {
   }
   return (
     <div className="App">
-      <div className="bar">
+      {/* <div className="bar">
           <a className="logo">
             <img src={logo} alt="Logo" height='80' width='80'></img>
           </a>
@@ -91,6 +113,7 @@ function Student() {
       <LinkContainer to="/">
           <button className="btn btn-info btn-lg">Back to Home</button>
         </LinkContainer>
+      </div> */}
     <Container>
         <AddLogItem addItem={addItem} />
         {alert.show && <Alert variant="light">{alert.message}</Alert>}

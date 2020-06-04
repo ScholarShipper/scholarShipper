@@ -4,16 +4,23 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+const { ipcRenderer } = window.require('electron');
+
 
 const AddLogItem = ({ addItem }) => {
-  const [note, setNote] = useState('')
-  const [student, setStudent] = useState('')
-  const [priority, setPriority] = useState('')
+  const [note, setNote] = useState('');
+  const [student, setStudent] = useState('');
+  const [priority, setPriority] = useState('');
+  // const [id, setId] = useState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
     addItem({ note, student, priority })
 
+    // Send query to db to add student info.
+    // const newStudentData = [_id, note, student, priority];
+    // ipcRenderer.send('saveStudent', newStudentData);
+    
     setNote('');
     setStudent('');
     setPriority('');
