@@ -2,6 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
 import Moment from 'react-moment';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const LogItem = (props) => {
   console.log('props (LogItem):', props)
@@ -24,6 +25,11 @@ const LogItem = (props) => {
       <td><Moment format='MMMM Do YYYY, h:mm:ss a'>{new Date(props.log.created_on)}</Moment></td>
       <td>
         <Button variant='danger' size='sm' onClick={() => props.deleteNote(props.log.user_id)}>x</Button>
+      </td>
+      <td>
+        <LinkContainer to="/StudentInfo">
+          <button className="btn btn-primary btn-sm">More Info</button>
+        </LinkContainer>
       </td>
     </tr>
   )
