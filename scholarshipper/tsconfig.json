@@ -8,6 +8,7 @@
       "es5",
       "es6"
     ],
+    "checkJs": false, 
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -22,9 +23,10 @@
     "experimentalDecorators": true,
     "jsx": "react",
     "sourceMap": true,
-    "strict": true,
+    "strict": false,
   },
   "include": [
     "src"
-  ]
+  ],
+  "rules": {}
 }

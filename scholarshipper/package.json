@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "homepage": "./",
   "private": true,
-  "main": "src/start.js",
+  "main": "src/Main.js",
   "build": {
     "appId": "display.menu",
     "directories": {
@@ -30,6 +30,7 @@
     "apollo-server-express": "^2.14.1",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
+    "bootstrap": "^4.5.0",
     "bulma": "^0.8.2",
     "cross-env": "^7.0.2",
     "electron": "^9.0.1",
@@ -38,13 +39,17 @@
     "express-session": "^1.17.1",
     "graphql": "^15.0.0",
     "materialize-css": "^1.0.0-rc.2",
+    "moment": "^2.26.0",
     "pg": "^8.2.1",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
+    "react-moment": "^0.9.7",
     "react-scripts": "3.4.1",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.25",
-    "typescript": "^3.9.3"
+    "typescript": "^3.9.3",
+    "uuid": "^8.1.0"
   },
   "scripts": {
     "electron": "cross-env NODE_ENV=dev nodemon --exec \"\"electron .\"\"",
@@ -62,6 +67,9 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "eslintIgnore": [
+    "src/*"
+  ],
   "browserslist": {
     "production": [
       ">0.2%",
