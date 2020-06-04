@@ -196,15 +196,21 @@ if (process.env.node_env !== 'production') {
 } 
 
 // Catch getAllStudents renderer process from Student.tsx
-ipcMain.on('getAllStudents', (event, data) => {
-  const getAllStudentsQuery = `SELECT * FROM students`
-  
-  db.query(getAllStudentsQuery)
+ipcMain.on('getAllStudentsFromACohort', (event, data) => {
+  // const getAllStudentsQuery = `SELECT * FROM students`
+  const getAllStudentsFromACohortQuery = `SELECT s.first_name, s.notes, s.priority
+    FROM students s
+    INNER JOIN cohort c
+    ON s.cohort_id = c.cohort_id
+    WHERE s.cohort_id = $1`;
+  const cohort_id = [data];
+    
+  db.query(getAllStudentsFromACohortQuery, cohort_id)
     .then (students => {
-      event.sender.send('gotAllStudents', students.rows);
+      event.sender.send('gotAllStudentsFromACohort', students.rows);
     })
-    .catch(e => {
-      console.log("Error while fetching students from DB: ", e);
+    .catch(err => {
+      console.log('Error while fetching students from DB: ', err);
     });
 })
 
@@ -221,10 +227,9 @@ ipcMain.on('saveStudent', (event, data) => {
   db.query(addStudentQuery, values)
     .then(students => {
       console.log('saved student into DB')
-      
     })
-    .catch(e => {
-      console.log("Error while saving to DB: ", e);
+    .catch(err => {
+      console.log('Error while saving student to DB: ', err);
     })
 })
 
@@ -240,9 +245,22 @@ ipcMain.on('deleteStudent', (event, data) => {
     .then(students => {
       console.log(`deleted student ${value} from DB`)
     })
-    .catch(e => {
-      console.log("Error while deleting from DB: ", e);
+    .catch(err => {
+      console.log('Error while deleting from DB: ', err);
     })
 })
 
-
+// Catch the renderer process (from App.tsx) that requests all cohort data.
+ipcMain.on('getAllCohorts', (event, data) => {
+  const getCohortQuery = `SELECT * FROM cohort`;
+  
+  db.query(getCohortQuery)
+    .then(cohortsData => {
+      // Send back retrieved data to App.tsx.
+      console.log('data in ipcMain: getAllCohorts', cohortsData.rows)
+      event.sender.send('gotAllCohorts', cohortsData.rows);
+    })
+    .catch(err => {
+      console.log('Error while fetching cohort data from DB: ', err);
+    })
+})

@@ -1,8 +1,9 @@
-export{}
-const db = require('../models/models');
-const studentControllers = <any>{};
+// export{}
+// // @ts-ignore
+// const db = require('../models/models');
+// const studentControllers = <any>{};
 
-studentControllers.getStudents = (req, res, next) => {
+// studentControllers.getStudents = (req, res, next) => {
   // console.log('get students request');
   // const studentsGetReq = `SELECT s.first_name, s.last_name, s.school
   // FROM students s
@@ -19,12 +20,10 @@ studentControllers.getStudents = (req, res, next) => {
   // })
   // .catch(err => console.log(`error: ${err}`))
 
-  res.locals.students = {
-    name: 'AL',
-    date: 'now',
-  };
+//   res.locals.students = {
+//     name: 'AL',
+//     date: 'now',
+//   };
 
-  next();
-}
-
-module.exports = studentControllers;
+// // @ts-ignore
+// module.exports = studentControllers

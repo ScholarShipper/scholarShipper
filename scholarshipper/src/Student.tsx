@@ -11,15 +11,25 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 const { ipcRenderer } = window.require('electron');
 
-function Student() {
+function Student(props) {
   const [logs, setLogs] = useState([])
+  
+  // Get the cohort_id attached to endpoint and passed from Card.jsx
+  // console.log('(Student.tsx) props.location.pathname:', props.location.pathname);
+  const getCohortId = () => {
+    const endpointArr = props.location.pathname.split('/');
+    return endpointArr[endpointArr.length - 1];
+  }
 
-  // Retrieve all student records upon rendering of this component.
+  const cohortId = getCohortId();
+  // console.log('cohortId (Student.tsx):', cohortId);
+
+  // Retrieve student records for the particular cohort upon rendering of this component.
   // ipcMain will send back the students data in an array.
   useEffect(() => {
-    ipcRenderer.send('getAllStudents');
-    ipcRenderer.on('gotAllStudents', (event, studentsData) => {
-      // console.log('studentsData in Student.tsx:', studentsData);
+    ipcRenderer.send('getAllStudentsFromACohort', cohortId);
+    ipcRenderer.on('gotAllStudentsFromACohort', (event, studentsData) => {
+      console.log('studentsData (Student.tsx):', studentsData);
 
       // Save studentsData to state.
       setLogs([...studentsData]);
@@ -49,10 +59,11 @@ function Student() {
   }
 
   function deleteNote(_id) {
-    setLogs(logs.filter((item) => item._id !== _id))
-
+    console.log('_id in deleteNote:', _id);
     // Send query to db to delete student info.
     ipcRenderer.send('deleteStudent', _id);
+
+    setLogs(logs.filter((item) => item._id !== _id))
   }
 
   function showAlert(message, variant='success', seconds = 3000) {
