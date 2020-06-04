@@ -1,9 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;1,900&family=Lato:ital@1&family=Sacramento&display=swap');
-
 .App {
   text-align: center;
-  position: relative;
-  font-family: 'Jost';
 }
 
 .App-header {
@@ -21,29 +17,6 @@
   color: #61dafb;
 }
 
-.logo {
-  position: absolute;
-  top: 340px;
-  left: 935px;
-}
-
-.App .helloText {
-  position: absolute;
-  top: 478px;
-  font-size: 100px;
-  font-family: Jost;
-  font-weight: 700;
-  left: 20px;
-}
-
-.helloTextSmall {
-  position: absolute;
-  top: 590px;
-  font-size: 47px;
-  font-family: 'Sacramento';
-  left: 328px;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -58,74 +31,12 @@
   text-align: center;
 }
 
-.App .bar {
+.bar {
   background-color: #77D5F6;
-  height: 500px;
-}
-
-.cohortApp {
-  text-align: center;
-}
-
-.studentApp {
-  text-align: center;
-}
-
-.cohortApp .bar {
-  background-color: #77D5F6;
-}
-
-.studentApp .bar {
-  background-color: #77D5F6;
+  height: 80px;
 }
 
 .card {
   margin-left: auto;
   margin-right: auto;
-}
-
-.App .login {
-  position: absolute;
-  bottom: 300px;
-  left: 475px;
-  font-family: 'Jost';
-  width: 150px;
-}
-
-.login2 {
-  width: 150px;
-}
-
-.studentApp .login {
-  position: absolute;
-  bottom: 300px;
-  left: 475px;
-  font-family: 'Jost';
-}
-
-.studentToHome {
-  width: 75px;
-  left: 50px;
-  top: 20px;
-  position: absolute;
-}
-
-.cohortApp .studentToHome {
-  width: 75px;
-  left: 50px;
-  top: 20px;
-  position: absolute;
-}
-
-.all {
-  font-family: 'Jost';
-  font-size: 15px;
-}
-
-.container {
-  font-size: 120%;
-}
-
-.cohortTitle {
-  font-size: 32px;
 }

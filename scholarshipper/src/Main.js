@@ -16,7 +16,7 @@ let studentWindow
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1100,
-    height: 725,
+    height: 800,
     webPreferences: {
       nodeIntegration: true,
     },
@@ -52,39 +52,39 @@ ipcMain.on('resize', function (e, x, y) {
   mainWindow.setSize(x, y);
 })
 
-// let fileName = './Student.tsx'
-// ipcMain.on('studentWindow', function (e, fileName) {
+let fileName = './Student.tsx'
+ipcMain.on('studentWindow', function (e, fileName) {
 
-//   if(studentWindow){
-//       studentWindow.focus(); //focus to new window
-//       return;
-//   }
+  if(studentWindow){
+      studentWindow.focus(); //focus to new window
+      return;
+  }
 
-//   studentWindow = new BrowserWindow({//1. create new Window
-//       height: 600, width: 800,
-//       show: false,
-//       webPreferences: {
-//         nodeIntegration: true,
-//       },
-//   });
+  studentWindow = new BrowserWindow({//1. create new Window
+      height: 600, width: 800,
+      show: false,
+      webPreferences: {
+        nodeIntegration: true,
+      },
+  });
 
-//   studentWindow.loadURL(url.format({ //2. Load HTML into new Window
-//       pathname: path.join(__dirname, './studentWindow.html'),
-//       protocol: 'file',
-//       slashes: true
-//   }));
+  studentWindow.loadURL(url.format({ //2. Load HTML into new Window
+      pathname: path.join(__dirname, './studentWindow.html'),
+      protocol: 'file',
+      slashes: true
+  }));
 
-//   studentWindow.once('ready-to-show', () => { //when the new window is ready, show it up
-//       studentWindow.show()
-//   })
+  studentWindow.once('ready-to-show', () => { //when the new window is ready, show it up
+      studentWindow.show()
+  })
 
-//   studentWindow.on('closed', function() { //set new window to null when we're done
-//       studentWindow = null
-//   })
+  studentWindow.on('closed', function() { //set new window to null when we're done
+      studentWindow = null
+  })
 
-//   // mainWindow.close(); //close the main window(the first window)
-// });
-// /** end of showing new window and closing the old one **/
+  // mainWindow.close(); //close the main window(the first window)
+});
+/** end of showing new window and closing the old one **/
 
 app.on('closed', function () {
   mainWindow = null;
@@ -126,25 +126,25 @@ function createAddWindow() {
   })
 }
 
-// function createStudentWindow() {
-//   studentsWindow = new BrowserWindow({
-//     width: 300,
-//     height: 200,
-//     title: 'Add New Cohort',
-//     webPreferences: {
-//       nodeIntegration: true,
-//     },
-//   });
-//   studentsWindow.loadURL(url.format({
-//     pathname: path.join(__dirname, './Student.tsx'),
-//     protocol: 'file:',
-//     slashes: true
-//   }));
-//   // garbage collection for optimization
-//   studentsWindow.on('closed', () => {
-//     studentsWindow = null;
-//   })
-// }
+function createStudentWindow() {
+  studentsWindow = new BrowserWindow({
+    width: 300,
+    height: 200,
+    title: 'Add New Cohort',
+    webPreferences: {
+      nodeIntegration: true,
+    },
+  });
+  studentsWindow.loadURL(url.format({
+    pathname: path.join(__dirname, './Student.tsx'),
+    protocol: 'file:',
+    slashes: true
+  }));
+  // garbage collection for optimization
+  studentsWindow.on('closed', () => {
+    studentsWindow = null;
+  })
+}
 
 // create menu template
 const mainMenuTemplate = [

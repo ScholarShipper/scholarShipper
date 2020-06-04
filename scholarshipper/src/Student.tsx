@@ -82,23 +82,18 @@ function Student(props) {
     }, 3000)
   }
   return (
-    <div className="studentApp">
+    <div className="App">
       <div className="bar">
-          <LinkContainer className="studentToHome" to="/">
-              <button className="btn btn-primary btn-sm">Home</button>
-          </LinkContainer>
-          <a className="logo2">
+          <a className="logo">
             <img src={logo} alt="Logo" height='80' width='80'></img>
           </a>
       </div>
       <br></br>
-        <div className="cohortTitle">Scholarship Priority</div>
-      <br></br>
-      <LinkContainer to="/Cohort">
-            <button className="btn btn-info btn-lg" aria-disabled="true">View Cohorts</button>
-      </LinkContainer>
+      <LinkContainer to="/">
+          <button className="btn btn-info btn-lg">Back to Home</button>
+        </LinkContainer>
     
-    <Container className="container">
+    <Container>
         <AddLogItem addItem={addItem} />
         {alert.show && <Alert variant="light">{alert.message}</Alert>}
       <Table>
@@ -108,7 +103,6 @@ function Student(props) {
             <th>Notes</th>
             <th>Student</th>
             <th>Created</th>
-            <th></th>
             <th></th>
           </tr>
         </thead>

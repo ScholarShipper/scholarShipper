@@ -67,8 +67,7 @@
   "proxy": "http://localhost:3000/",
   "secure": false,
   "eslintConfig": {
-    "extends": "react-app",
-    "@typescript-eslint/no-unused-vars" : "off"
+    "extends": "react-app"
   },
   "eslintIgnore": [
     "src/*"
