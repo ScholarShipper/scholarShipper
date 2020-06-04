@@ -1,5 +1,3 @@
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-/* eslint-disable no-unused-expressions */
 import React, { useState } from 'react';
 import './App.css';
 import logo from './assets/ScholarShipperIcon_.png';
@@ -9,6 +7,7 @@ import Table from 'react-bootstrap/Table';
 import Alert from 'react-bootstrap/Alert';
 import LogItem from './components/LogItem';
 import AddLogItem from './components/AddLogItem';
+const { ipcRenderer } = window.require('electron');
 
 function Student() {
   const [logs, setLogs] = useState([
@@ -62,6 +61,9 @@ function Student() {
 
   function deleteNote(_id) {
     setLogs(logs.filter((item) => item._id !== _id))
+
+    ipcRenderer.send('deleteStudent', _id);
+
   }
 
   function showAlert(message, variant='success', seconds = 3000) {
@@ -81,11 +83,11 @@ function Student() {
   }
   return (
     <div className="App">
-      <div className="bar">
+      {/* <div className="bar">
           <a className="logo">
             <img src={logo} alt="Logo" height='63' width='63'></img>
           </a>
-      </div>
+      </div> */}
     <Container>
         <AddLogItem addItem={addItem} />
         {alert.show && <Alert variant="light">{alert.message}</Alert>}

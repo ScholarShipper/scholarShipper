@@ -1,6 +1,6 @@
-// const db = require('../models/models');
-
-const studentControllers = {};
+export{}
+const db = require('../models/models');
+const studentControllers = <any>{};
 
 studentControllers.getStudents = (req, res, next) => {
   // console.log('get students request');
