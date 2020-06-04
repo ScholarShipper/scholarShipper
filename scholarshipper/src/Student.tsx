@@ -102,14 +102,19 @@ function Student() {
   return (
     <div className="studentApp">
       <div className="bar">
+          <LinkContainer className="studentToHome" to="/">
+              <button className="btn btn-primary btn-sm">Home</button>
+          </LinkContainer>
           <a className="logo2">
             <img src={logo} alt="Logo" height='80' width='80'></img>
           </a>
       </div>
       <br></br>
-      <LinkContainer to="/">
-          <button className="btn btn-info btn-lg">Back to Home</button>
-        </LinkContainer>
+        <div className="cohortTitle">Scholarship Priority</div>
+      <br></br>
+      <LinkContainer to="/Cohort">
+            <button className="btn btn-info btn-lg" aria-disabled="true">View Cohorts</button>
+      </LinkContainer>
     
     <Container className="container">
         <AddLogItem addItem={addItem} />
@@ -121,6 +126,7 @@ function Student() {
             <th>Notes</th>
             <th>Student</th>
             <th>Created</th>
+            <th></th>
             <th></th>
           </tr>
         </thead>

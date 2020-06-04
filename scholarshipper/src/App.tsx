@@ -22,7 +22,7 @@ function App() {
 
         <div>
           <br></br>
-          <LinkContainer className="login" to="/Student">
+          <LinkContainer className="login" to="/Cohort">
             <button className="btn btn-info btn-lg">Admin Login</button>
           </LinkContainer>
         </div>

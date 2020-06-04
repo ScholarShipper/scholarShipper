@@ -4,7 +4,6 @@
   text-align: center;
   position: relative;
   font-family: 'Jost';
-  background-image: 
 }
 
 .App-header {
@@ -26,6 +25,10 @@
   position: absolute;
   top: 340px;
   left: 935px;
+}
+
+.logo3 {
+
 }
 
 .App .helloText {
@@ -64,9 +67,16 @@
   height: 500px;
 }
 
+.cohortApp {
+  text-align: center;
+}
 
 .studentApp {
   text-align: center;
+}
+
+.cohortApp .bar {
+  background-color: #77D5F6;
 }
 
 .studentApp .bar {
@@ -83,6 +93,11 @@
   bottom: 300px;
   left: 475px;
   font-family: 'Jost';
+  width: 150px;
+}
+
+.login2 {
+  width: 150px;
 }
 
 .studentApp .login {
@@ -92,11 +107,29 @@
   font-family: 'Jost';
 }
 
+.studentToHome {
+  width: 75px;
+  left: 50px;
+  top: 20px;
+  position: absolute;
+}
+
+.cohortApp .studentToHome {
+  width: 75px;
+  left: 50px;
+  top: 20px;
+  position: absolute;
+}
+
 .all {
   font-family: 'Jost';
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .container {
   font-size: 120%;
+}
+
+.cohortTitle {
+  font-size: 32px;
 }
