@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import { Link } from 'react-router-dom';
 import logo from './assets/ScholarShipperIcon_.png';
 import Grid from './components/Grid.jsx';
+import { LinkContainer } from 'react-router-bootstrap';
 // const electron = require('electron')
 // const path = require('path')
 // const BrowserWindow = electron.remote.BrowserWindow
@@ -17,7 +17,10 @@ function App() {
           </a>
         </div>
         <div>
-        <Link className="App-link" to="/Student">Link</Link>
+        <br></br>
+        <LinkContainer to="/Student">
+          <button className="btn btn-info btn-lg">Student Form</button>
+        </LinkContainer>
         </div>
     </div>
   );

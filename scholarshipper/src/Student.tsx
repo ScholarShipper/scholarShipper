@@ -9,7 +9,7 @@ import Table from 'react-bootstrap/Table';
 import Alert from 'react-bootstrap/Alert';
 import LogItem from './components/LogItem';
 import AddLogItem from './components/AddLogItem';
-import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 
 function Student() {
   const [logs, setLogs] = useState([
@@ -87,7 +87,10 @@ function Student() {
             <img src={logo} alt="Logo" height='80' width='80'></img>
           </a>
       </div>
-    <Link className="App-link" to="/">Link</Link>
+      <br></br>
+      <LinkContainer to="/">
+          <button className="btn btn-info btn-lg">Back to Home</button>
+        </LinkContainer>
     <Container>
         <AddLogItem addItem={addItem} />
         {alert.show && <Alert variant="light">{alert.message}</Alert>}
