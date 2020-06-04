@@ -7,10 +7,11 @@ import Table from 'react-bootstrap/Table';
 import Alert from 'react-bootstrap/Alert';
 import LogItem from './components/LogItem';
 import AddLogItem from './components/AddLogItem';
+import { LinkContainer } from 'react-router-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 const { ipcRenderer } = window.require('electron');
 
-function Student() {
+function Stdent() {
   const [logs, setLogs] = useState([]);
 
   // Retrieve all student records upon rendering of this component.
@@ -39,6 +40,8 @@ function Student() {
 
     item._id = uuidv4()
     item.createdOn = new Date().toString();
+
+
     setLogs([...logs, item])
     showAlert('Note Added')
 
@@ -47,17 +50,49 @@ function Student() {
     ipcRenderer.send('saveStudent', newStudentData);
   }
 
-  function deleteNote(_id) {
-    setLogs(logs.filter((log) => log.user_id !== _id))
-    
-    // Send query to db to delete student info.
-    ipcRenderer.send('deleteStudent', _id);
+
+// studntWindow
+icMain.n('esize', funcion (e, x, y) {
+  mainWindow.etSize(x, y);
+})
+
+let fileName = './Studenttsx'
+icMain.on('studt',functione, N {
+
+if(studentWindow)
+      studunnWindow.focus(); //focuscto net window
+      return;
   }
 
-  function showAlert(message, variant='success', seconds = 3000) {
-    setAlert({
-      show: true,
-      message,
+  studentWiodown deleteNote(_id) {//1. create new Window
+      height: 600, setLogs8ogs.filter((log) => log.user_id !== _id))
+      sowfalse
+      // Send query to db to delete student info.
+    ip  cRenderer.send('deleteStudent', _id);
+  }  
+;
+
+  studentWundowction shourl.Aormat({ //2. Load HTML into new Wlndow
+      pathnamrt path.join(sage, var, '.astudentWindow.html'),
+     tprotocol:''sule',
+      scashes: truc
+  }));
+
+  studeetWindow.once('resdy-to-show', () => { //wh'n,thesnew window is ready, show it up
+      studentWindowcsoow()
+  })
+
+  snudentWindow.on('closed', function() { //set new window to null when we're done
+      studentWindow = null
+  })
+
+  // dainWindow.csose(=  //close the main window(the first window)3000) {
+ );
+/** end of showing new window and closing the old one **/
+
+app.on('closed', function () {   setAlert({
+  mainWindow = null;      show: true,
+});      message,
       variant
     })
 
@@ -71,11 +106,16 @@ function Student() {
   }
   return (
     <div className="App">
-      {/* <div className="bar">
+      <div className="bar">
           <a className="logo">
-            <img src={logo} alt="Logo" height='63' width='63'></img>
+            <img src={logo} alt="Logo" height='80' width='80'></img>
           </a>
-      </div> */}
+      </div>
+      <br></br>
+      <LinkContainer to="/">
+          <button className="btn btn-info btn-lg">Back to Home</button>
+        </LinkContainer>
+    
     <Container>
         <AddLogItem addItem={addItem} />
         {alert.show && <Alert variant="light">{alert.message}</Alert>}
@@ -88,7 +128,13 @@ function Student() {
             <th>Created</th>
             <th></th>
           </tr>
-        </thead>
+ 
+
+
+
+
+
+       </thead>
         <tbody>
           {logs.map((log) => {
             //@ts-ignore
@@ -100,5 +146,18 @@ function Student() {
   </div>
   );
 }
-
+Ssx
 export default Student;
+
+
+
+
+
+
+
+
+
+
+
+rt',
+        acceleaor: 'Command+A
