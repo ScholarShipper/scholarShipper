@@ -170,13 +170,13 @@ ipcMain.on('getAllStudents', (event, data) => {
   
   db.query(getAllStudentsQuery)
     .then (students => {
-      console.log('retrieving students from DB:', students.rows);
+      // console.log('retrieving students from DB:', students.rows);
       event.sender.send('gotAllStudents', students.rows);
     })
     .catch(e => {
       console.log("Error while fetching students from DB: ", e);
     });
-})
+}) 
 
 // Catch saveStudent renderer process from Student.tsx
 ipcMain.on('saveStudent', (event, data) => {
