@@ -3,8 +3,13 @@ import './App.css';
 import logo from './assets/ScholarShipperIcon_.png';
 import { LinkContainer } from 'react-router-bootstrap';
 import Table from 'react-bootstrap/Table';
+const path = require('path');
+const os = require('os');
 
 function StudentInfo() {
+
+  const innerText = path.join(os.homedir(), 'image')
+
   return (
     <div className="cohortApp">
         <div className="bar">
@@ -68,7 +73,7 @@ function StudentInfo() {
             </form>
             <div className="card output">
               <div className="card-content">
-                Output Path: <span id="output-path"></span>
+                Output Path: <span id="output-path">{innerText}</span>
               </div>
             </div>
           </div>
