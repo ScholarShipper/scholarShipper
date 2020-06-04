@@ -3,14 +3,13 @@ import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
 import Moment from 'react-moment';
 
-const LogItem = ({ 
-  deleteNote,
-  log: { _id, priority, student, note, created }}) => {
-  
+const LogItem = (props) => {
+  console.log('props (LogItem):', props)
+
   const setVariant = () => {
-    if (priority === 'high') {
+    if (props.log.priority === 'high') {
       return 'danger'
-    } else if (priority === 'moderate') {
+    } else if (props.log.priority === 'moderate') {
       return 'warning'
     } else {
       return 'secondary'
@@ -19,12 +18,12 @@ const LogItem = ({
 
   return (
     <tr>
-      <td><Badge variant={setVariant()} className='p-2'>{priority.charAt(0).toUpperCase() + priority.slice(1)}</Badge></td>
-      <td>{note}</td>
-      <td>{student}</td>
-      <td><Moment format='MMMM Do YYYY, h:mm:ss a'>{new Date(created)}</Moment></td>
+      <td><Badge variant={setVariant()} className='p-2'>{props.log.priority?.charAt(0).toUpperCase() + props.log.priority?.slice(1)}</Badge></td>
+      <td>{props.log.note}</td>
+      <td>{props.log.student}</td>
+      <td><Moment format='MMMM Do YYYY, h:mm:ss a'>{new Date(props.log.created)}</Moment></td>
       <td>
-        <Button variant='danger' size='sm' onClick={() => deleteNote(_id)}>x</Button>
+        <Button variant='danger' size='sm' onClick={() => props.deleteNote(props.log.user_id)}>x</Button>
       </td>
     </tr>
   )
