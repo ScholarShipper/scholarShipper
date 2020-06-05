@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import logo from './assets/ScholarShipperIcon_.png';
 import { LinkContainer } from 'react-router-bootstrap';
 import Table from 'react-bootstrap/Table';
+const { ipcRenderer } = window.require('electron');
 
-function StudentInfo() {
+function StudentInfo(props) {
+  // Get the user_id attached to endpoint and passed from LogItem.js
+  // console.log('(Student.tsx) props.location.pathname:', props.location.pathname);
+  const getStudentId = () => {
+    const endpointArr = props.location.pathname.split('/');
+    return endpointArr[endpointArr.length - 1];
+  }
+  
+  const studentId = getStudentId();
+  // console.log('studentId (StudentInfo.tsx):', studentId);
+    
+  const [studentDetails, setStudentDetails] = useState([]);
+  useEffect(() => {
+    ipcRenderer.send('getStudentDetails', studentId);
+    ipcRenderer.on('gotStudentDetails', (event, studentDetails) => {
+      console.log('this is student details', studentDetails)
+      setStudentDetails({...studentDetails});
+    })
+  }, []);
+
   return (
     <div className="cohortApp">
         <div className="bar">
@@ -38,6 +58,14 @@ function StudentInfo() {
               <th>Notes</th>
             </tr>
           </thead>
+            <tr>
+              <td>{studentDetails[0].priority}</td>
+              <td>{studentDetails[0].first_name}</td>
+              <td>{studentDetails[0].school}</td>
+              <td>{studentDetails[0].start_year}</td>
+              <td>{studentDetails[0].cohort_id}</td>
+              <td>{studentDetails[0].notes}</td>
+            </tr>
         </Table>
     </div>
   );

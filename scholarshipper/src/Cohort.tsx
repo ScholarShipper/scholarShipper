@@ -1,10 +1,21 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import './App.css';
 import logo from './assets/ScholarShipperIcon_.png';
 import Grid from './components/Grid.jsx';
 import { LinkContainer } from 'react-router-bootstrap';
+const { ipcRenderer } = window.require('electron'); 
 
 function Cohort() {
+    const [cohortData, setCohortData] = useState([]);
+
+    useEffect(() => {
+      // Initiate renderer process to ipcMain to query DB for cohort data.
+      ipcRenderer.send('getAllCohorts');
+      // Catch the data sent back by ipcMain.
+      ipcRenderer.on('gotAllCohorts', (event, cohortData) => {
+        setCohortData([...cohortData]);
+      })
+    }, []);
   return (
     <div className="cohortApp">
         <div className="bar">
@@ -24,7 +35,7 @@ function Cohort() {
           </LinkContainer>
         </div>
         <br></br>
-        <Grid />
+        <Grid cohortData={cohortData}/>
     </div>
   );
 } 

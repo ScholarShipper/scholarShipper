@@ -198,7 +198,8 @@ if (process.env.node_env !== 'production') {
 // Catch getAllStudents renderer process from Student.tsx
 ipcMain.on('getAllStudentsFromACohort', (event, data) => {
   // const getAllStudentsQuery = `SELECT * FROM students`
-  const getAllStudentsFromACohortQuery = `SELECT s.first_name, s.notes, s.priority
+  const getAllStudentsFromACohortQuery = 
+    `SELECT s.user_id, s.first_name, s.notes, s.priority, s.created_on
     FROM students s
     INNER JOIN cohort c
     ON s.cohort_id = c.cohort_id
@@ -221,8 +222,8 @@ ipcMain.on('saveStudent', (event, data) => {
   // Save data from renderer process to db.
   const values = data;
   
-  const addStudentQuery = `INSERT INTO students(user_id, notes, first_name, priority, created_on)
-  VALUES ($1, $2, $3, $4, $5)`
+  const addStudentQuery = `INSERT INTO students(user_id, notes, first_name, priority, created_on, cohort_id)
+  VALUES ($1, $2, $3, $4, $5, $6)`
   
   db.query(addStudentQuery, values)
     .then(students => {
@@ -262,5 +263,23 @@ ipcMain.on('getAllCohorts', (event, data) => {
     })
     .catch(err => {
       console.log('Error while fetching cohort data from DB: ', err);
+    })
+})
+
+// Catch the renderer request to get details on a particular student.
+ipcMain.on('getStudentDetails', (event, studentId) => {
+  const getOneStudentDetailsQuery = 
+    `SELECT s.user_id, s.first_name, s.notes, s.priority, s.created_on, s.cohort_id
+    FROM students s
+    WHERE s.user_id= $1`;
+
+  const value = [studentId];
+
+  db.query(getOneStudentDetailsQuery, value)
+    .then(studentDetails => {
+      event.sender.send('gotStudentDetails', studentDetails.rows[0]);
+    })
+    .catch(err => {
+      console.log('Error while fetching student details from DB: ', err);      
     })
 })
