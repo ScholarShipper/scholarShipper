@@ -2,34 +2,28 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Cards from './Card.jsx';
+import Card from './Card.jsx';
 
 const Grid = (props) => {
-  const { cohort } = props;
+  const { cohortData } = props;
+  
+  const cardArr = cohortData.map((cohort, idx) => {
+    return <Card key={cohort.cohort_id} cohortData={cohort} />
+  })
+  
   return (
-    <Container>
-      <Row>
-        <Col><Cards /></Col>
-        <Col><Cards /></Col>
-        <Col><Cards /></Col>
-      </Row>
-      <Row>
-        <Col><Cards /></Col>
-        <Col><Cards /></Col>
-        <Col><Cards /></Col>
-      </Row>
-      <Row>
-        <Col><Cards /></Col>
-        <Col><Cards /></Col>
-        <Col><Cards /></Col>
-      </Row>
-      <Row>
-        <Col><Cards /></Col>
-        <Col><Cards /></Col>
-        <Col><Cards /></Col>
-      </Row>
+    <Container id="cohort-cards" style={styles.cohortCards}>
+      {cardArr}
     </Container>
   )
 }
 
 export default Grid;
+
+const styles = {
+  cohortCards: {
+    display: 'grid',
+    gridGap: '1em',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+  }
+}

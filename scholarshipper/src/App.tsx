@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import logo from './assets/ScholarShipperIcon_.png';
 import { LinkContainer } from 'react-router-bootstrap';
+import Student from './Student';
+const { ipcRenderer } = window.require('electron');
+// const BrowserWindow = electron.remote.BrowserWindow
+// import NavBar from './components/NavBar.jsx';
 
-function App() {
+function App(props) {
   return (
     <div className="App">
         <div className="bar">

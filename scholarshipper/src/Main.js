@@ -153,16 +153,22 @@ if (process.env.node_env !== 'production') {
 } 
 
 // Catch getAllStudents renderer process from Student.tsx
-ipcMain.on('getAllStudents', (event, data) => {
-  const getAllStudentsQuery = `SELECT * FROM students`
-  
-  db.query(getAllStudentsQuery)
+ipcMain.on('getAllStudentsFromACohort', (event, data) => {
+  // const getAllStudentsQuery = `SELECT * FROM students`
+  const getAllStudentsFromACohortQuery = 
+    `SELECT s.user_id, s.first_name, s.notes, s.priority, s.created_on
+    FROM students s
+    INNER JOIN cohort c
+    ON s.cohort_id = c.cohort_id
+    WHERE s.cohort_id = $1`;
+  const cohort_id = [data];
+    
+  db.query(getAllStudentsFromACohortQuery, cohort_id)
     .then (students => {
-      console.log('retrieving students from DB:', students.rows);
-      event.sender.send('gotAllStudents', students.rows);
+      event.sender.send('gotAllStudentsFromACohort', students.rows);
     })
-    .catch(e => {
-      console.log("Error while fetching students from DB: ", e);
+    .catch(err => {
+      console.log('Error while fetching students from DB: ', err);
     });
 })
 
@@ -173,16 +179,15 @@ ipcMain.on('saveStudent', (event, data) => {
   // Save data from renderer process to db.
   const values = data;
   
-  const addStudentQuery = `INSERT INTO students(user_id, notes, first_name, priority, created_on)
-  VALUES ($1, $2, $3, $4, $5)`
+  const addStudentQuery = `INSERT INTO students(user_id, notes, first_name, priority, created_on, cohort_id)
+  VALUES ($1, $2, $3, $4, $5, $6)`
   
   db.query(addStudentQuery, values)
     .then(students => {
       console.log('saved student into DB')
-      
     })
-    .catch(e => {
-      console.log("Error while saving to DB: ", e);
+    .catch(err => {
+      console.log('Error while saving student to DB: ', err);
     })
 })
 
@@ -198,9 +203,40 @@ ipcMain.on('deleteStudent', (event, data) => {
     .then(students => {
       console.log(`deleted student ${value} from DB`)
     })
-    .catch(e => {
-      console.log("Error while deleting from DB: ", e);
+    .catch(err => {
+      console.log('Error while deleting from DB: ', err);
     })
 })
 
+// Catch the renderer process (from App.tsx) that requests all cohort data.
+ipcMain.on('getAllCohorts', (event, data) => {
+  const getCohortQuery = `SELECT * FROM cohort`;
+  
+  db.query(getCohortQuery)
+    .then(cohortsData => {
+      // Send back retrieved data to App.tsx.
+      console.log('data in ipcMain: getAllCohorts', cohortsData.rows)
+      event.sender.send('gotAllCohorts', cohortsData.rows);
+    })
+    .catch(err => {
+      console.log('Error while fetching cohort data from DB: ', err);
+    })
+})
 
+// Catch the renderer request to get details on a particular student.
+ipcMain.on('getStudentDetails', (event, studentId) => {
+  const getOneStudentDetailsQuery = 
+    `SELECT s.user_id, s.first_name, s.notes, s.priority, s.created_on, s.cohort_id, s.start_year, s.school
+    FROM students s
+    WHERE s.user_id= $1`;
+
+  const value = [studentId];
+
+  db.query(getOneStudentDetailsQuery, value)
+    .then(studentDetails => {
+      event.sender.send('gotStudentDetails', studentDetails.rows[0]);
+    })
+    .catch(err => {
+      console.log('Error while fetching student details from DB: ', err);      
+    })
+})
