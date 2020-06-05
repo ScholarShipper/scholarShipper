@@ -2,7 +2,7 @@ const electron = require('electron')
 const path = require('path')
 const url = require('url')
 const isDev = require('electron-is-dev')
-require('electron-reload')
+// require('electron-reload')
 const { app, BrowserWindow, Menu, ipcMain } = electron
 const db = require('./models/models.ts')
 

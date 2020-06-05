@@ -3,14 +3,41 @@ import './App.css';
 import logo from './assets/ScholarShipperIcon_.png';
 import { LinkContainer } from 'react-router-bootstrap';
 import Table from 'react-bootstrap/Table';
-const path = require('path');
-const os = require('os');
+import axios from 'axios';
 
 function StudentInfo() {
 
-  const innerText = path.join(os.homedir(), 'studentDoc')
-  // const [file, setFile] = useState('');
-  // const [filename, setFilename] = useState('Choose File')
+  const [file, setFile] = useState('');
+  const [filename, setFilename] = useState('Choose File');
+  const [uploadedFile, setUploadedFile] = useState({});
+
+  const onChange = e => {
+    setFile(e.target.files[0]);
+    setFilename(e.target.files[0].name);
+  };
+
+  // const onSubmit = async e => {
+  //   e.preventDefault();
+  //   const formData = new FormData();
+  //   formData.append('file', file);
+
+  //   try {
+  //     const res = await axios.post('/upload', formData, {
+  //       headers: {
+  //         'Content-Type': 'multipart/form-data'
+  //       }
+  //     });
+  //     const { fileName, filePath} = res.data;
+  //     setUploadedFile({ fileName, filePath });
+
+  //   } catch (err) {
+  //     if (err.response.status === 500) {
+  //       console.log('Problem')
+  //     } else {
+  //       console.log(err.res.data.msg);
+  //     }
+  //   }
+  // }
 
 
   return (
@@ -61,25 +88,17 @@ function StudentInfo() {
         <br></br>
         <br></br>
         <body>
-          <div className="container">
-            <form id="image-form">
-              <div className="file-field input-field">
-                  <input type="file" id="img" />
-                <div className="file-path-wrapper">
-                  <input
-                    className="file-path validate"
-                    type="text"
-                    placeholder="Upload file"
-                  />
-                </div>
-              </div>
-            </form>
-            <div className="card output">
-              <div className="card-content">
-                Output Path: <span id="output-path">{innerText}</span>
-              </div>
+          <form className="container">
+            <div className="custom-file">
+              <input type="file" className="custom-file-input" id="customFile" onChange={onChange} />
+              <label className="custom-file-label" htmlFor="customFile">{filename}</label>
             </div>
-          </div>
+            <input
+              type='submit'
+              value='Upload'
+              className='btn btn-dark btn-large mt-4'
+            />
+          </form>
         </body>
     </div>
   );
