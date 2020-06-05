@@ -8,21 +8,17 @@ const { ipcRenderer } = window.require('electron');
 
 
 const AddLogItem = ({ addItem }) => {
-  const [note, setNote] = useState('');
-  const [student, setStudent] = useState('');
+  const [notes, setNotes] = useState('');
+  const [first_name, setStudentName] = useState('');
   const [priority, setPriority] = useState('');
   // const [id, setId] = useState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addItem({ note, student, priority })
-
-    // Send query to db to add student info.
-    // const newStudentData = [_id, note, student, priority];
-    // ipcRenderer.send('saveStudent', newStudentData);
-    
-    setNote('');
-    setStudent('');
+    addItem({ notes, first_name, priority })
+   
+    setNotes('');
+    setStudentName('');
     setPriority('');
   }
 
@@ -32,21 +28,21 @@ const AddLogItem = ({ addItem }) => {
         <Form onSubmit={onSubmit}>
           <Row className='my-3'>
             <Col>
-              <Form.Control placeholder='Notes' value={note}
-              onChange={(e) => setNote(e.target.value)} />
+              <Form.Control placeholder='Notes' value={notes}
+              onChange={(e) => setNotes(e.target.value)} />
             </Col>
           </Row>
           <Row>
             <Col>
               <Form.Control
                 placeholder='Student Name'
-                value={student}
-                onChange={(e) => setStudent(e.target.value)}
+                value={first_name}
+                onChange={(e) => setStudentName(e.target.value)}
               />
             </Col>
             <Col>
               <Form.Control as='select' value={priority} onChange={(e) =>
-              setPriority(e.target.value)}>
+                setPriority(e.target.value)}>
                 <option value="0">Select Priority</option>
                 <option value="low">Low</option>
                 <option value="moderate">Moderate</option>

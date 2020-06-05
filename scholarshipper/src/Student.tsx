@@ -12,8 +12,8 @@ import { v4 as uuidv4 } from 'uuid';
 const { ipcRenderer } = window.require('electron');
 
 function Student(props) {
-  const [logs, setLogs] = useState([])
-  
+  const [logs, setLogs] = useState([]);
+  console.log('logs (state in Student.tsx):', logs);
   // Get the cohort_id attached to endpoint and passed from Card.jsx
   // console.log('(Student.tsx) props.location.pathname:', props.location.pathname);
   const getCohortId = () => {
@@ -47,23 +47,24 @@ function Student(props) {
       showAlert('Cohort 35 is the G.O.A.T.', 'danger');
       return false
     }
+    console.log('item in Student.tsx (addItem()):', item);
 
-    item._id = uuidv4()
-    item.createdOn = new Date().toString();
+    item.user_id = uuidv4()
+    item.created_on = new Date().toString();
     setLogs([...logs, item])
     showAlert('Note Added')
 
-    // Send query to db to add student info.
-    const newStudentData = [item._id, item.note, item.student, item.priority, item.createdOn];
+    // Send query to db to add student info, along with the proper cohortId.
+    const newStudentData = [item.user_id, item.notes, item.first_name, item.priority, item.created_on, cohortId];
     ipcRenderer.send('saveStudent', newStudentData);
   }
 
-  function deleteNote(_id) {
-    console.log('_id in deleteNote:', _id);
+  function deleteNote(user_id) {
+    console.log('_id in deleteNote:', user_id);
     // Send query to db to delete student info.
-    ipcRenderer.send('deleteStudent', _id);
+    ipcRenderer.send('deleteStudent', user_id);
 
-    setLogs(logs.filter((item) => item._id !== _id))
+    setLogs(logs.filter((item) => item.user_id !== user_id))
   }
 
   function showAlert(message, variant='success', seconds = 3000) {
@@ -85,7 +86,7 @@ function Student(props) {
     <div className="studentApp">
       <div className="bar">
           <LinkContainer className="studentToHome" to="/">
-              <button className="btn btn-primary btn-sm">Home</button>
+            <button className="btn btn-primary btn-sm">Home</button>
           </LinkContainer>
           <a className="logo2">
             <img src={logo} alt="Logo" height='80' width='80'></img>

@@ -5,7 +5,8 @@ import Moment from 'react-moment';
 import { LinkContainer } from 'react-router-bootstrap';
 
 const LogItem = (props) => {
-  console.log('props (LogItem):', props)
+  // console.log('props (LogItem):', props);
+  console.log('props.log (LogItem):', props.log);
 
   const setVariant = () => {
     if (props.log.priority === 'high') {
@@ -27,7 +28,7 @@ const LogItem = (props) => {
         <Button variant='danger' size='sm' onClick={() => props.deleteNote(props.log.user_id)}>x</Button>
       </td>
       <td>
-        <LinkContainer to="/StudentInfo">
+        <LinkContainer to={`/StudentInfo/${props.log.user_id}`}>
           <button className="btn btn-primary btn-sm">More Info</button>
         </LinkContainer>
       </td>

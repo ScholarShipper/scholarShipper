@@ -9,19 +9,6 @@ const { ipcRenderer } = window.require('electron');
 // import NavBar from './components/NavBar.jsx';
 
 function App(props) {
-  // const [cohortData, setCohortData] = useState([]);
-
-  // useEffect(() => {
-  //   // Initiate renderer process to ipcMain to query DB for cohort data.
-  //   ipcRenderer.send('getAllCohorts');
-  //   // Catch the data sent back by ipcMain.
-  //   ipcRenderer.on('gotAllCohorts', (event, cohortData) => {
-  //     setCohortData([...cohortData]);
-  //   })
-  // }, []);
-
-  // console.log('this is cohortData in App:',cohortData)
-
   return (
     <div className="App">
         <div className="bar">
