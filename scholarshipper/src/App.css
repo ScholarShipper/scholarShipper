@@ -40,7 +40,7 @@
   position: absolute;
   top: 590px;
   font-size: 47px;
-  font-family: 'Sacramento';
+  font-family: Sacramento;
   left: 328px;
 }
 
@@ -65,6 +65,11 @@
 
 .cohortApp {
   text-align: center;
+  font-family: Jost;
+}
+
+.container {
+  font-family: Jost;
 }
 
 .studentApp {
@@ -89,10 +94,6 @@
   bottom: 300px;
   left: 475px;
   font-family: 'Jost';
-  width: 150px;
-}
-
-.login2 {
   width: 150px;
 }
 
@@ -129,3 +130,22 @@
 .cohortTitle {
   font-size: 32px;
 }
+
+.padding1 {
+  width: 150px;
+  left: 390px;
+  top: 170px;
+  position: absolute;
+}
+
+.padding2 {
+  width: 150px;
+  right: 390px;
+  top: 170px;
+  position: absolute;
+}
+
+.container {
+  text-align: center;
+}
+

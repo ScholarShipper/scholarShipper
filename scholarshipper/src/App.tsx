@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import logo from './assets/ScholarShipperIcon_.png';
-import Grid from './components/Grid.jsx';
 import { LinkContainer } from 'react-router-bootstrap';
 import Student from './Student';
 const { ipcRenderer } = window.require('electron');
