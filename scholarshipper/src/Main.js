@@ -2,9 +2,8 @@ const electron = require('electron')
 const path = require('path')
 const url = require('url')
 const isDev = require('electron-is-dev')
-// require('electron-reload')
 const { app, BrowserWindow, Menu, ipcMain } = electron
-const db = require('./models/models.ts')
+const db = require('./models/models.js')
 
 // point of entry
 let mainWindow
@@ -215,7 +214,6 @@ ipcMain.on('getAllCohorts', (event, data) => {
   db.query(getCohortQuery)
     .then(cohortsData => {
       // Send back retrieved data to App.tsx.
-      console.log('data in ipcMain: getAllCohorts', cohortsData.rows)
       event.sender.send('gotAllCohorts', cohortsData.rows);
     })
     .catch(err => {

@@ -1,44 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
-import logo from './assets/ScholarShipperIcon_.png';
+import '../App.css';
+import logo from '../assets/ScholarShipperIcon_.png';
 import { LinkContainer } from 'react-router-bootstrap';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
-
-// function StudentInfo() {
-
-//   const [file, setFile] = useState('');
-//   const [filename, setFilename] = useState('Choose File');
-//   const [uploadedFile, setUploadedFile] = useState({});
-
-//   const onChange = e => {
-//     setFile(e.target.files[0]);
-//     setFilename(e.target.files[0].name);
-//   };
-
-  // const onSubmit = async e => {
-  //   e.preventDefault();
-  //   const formData = new FormData();
-  //   formData.append('file', file);
-
-  //   try {
-  //     const res = await axios.post('/upload', formData, {
-  //       headers: {
-  //         'Content-Type': 'multipart/form-data'
-  //       }
-  //     });
-  //     const { fileName, filePath} = res.data;
-  //     setUploadedFile({ fileName, filePath });
-
-  //   } catch (err) {
-  //     if (err.response.status === 500) {
-  //       console.log('Problem')
-  //     } else {
-  //       console.log(err.res.data.msg);
-  //     }
-  //   }
-  // }
-
 
 const { ipcRenderer } = window.require('electron');
 
@@ -60,7 +25,6 @@ function StudentInfo(props) {
   }
   
   const studentId = getStudentId();
-  // console.log('studentId (StudentInfo.tsx):', studentId);
     
   const [studentDetails, setStudentDetails] = useState([]);
   useEffect(() => {

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
-import logo from './assets/ScholarShipperIcon_.png';
+import logo from '../assets/ScholarShipperIcon_.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import Alert from 'react-bootstrap/Alert';
-import LogItem from './components/LogItem';
-import AddLogItem from './components/AddLogItem';
+import LogItem from './LogItem';
+import AddLogItem from './AddLogItem';
+import '../App.css';
 import { LinkContainer } from 'react-router-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 const { ipcRenderer } = window.require('electron');
