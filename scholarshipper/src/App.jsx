@@ -17,7 +17,6 @@ function App(props) {
             <img src={logo} alt="Logo" height='150' width='150'></img>
           </a>
         </div>
-
         <div>
           <br></br>
           <LinkContainer className="login" to="/Cohort">
