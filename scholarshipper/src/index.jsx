@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { HashRouter as Router, Route } from 'react-router-dom';
-
 import Home from "./App";
-import Student from "./Student";
-import Cohort from "./Cohort";
-import StudentInfo from "./StudentInfo";
+import Student from "./components/Student";
+import Cohort from "./components/Cohort";
+import StudentInfo from "./components/StudentInfo";
 
 ReactDOM.render(
+  <>
   <Router>
     <div className="all">
       <main>
@@ -18,7 +18,8 @@ ReactDOM.render(
         <Route path="/StudentInfo" component={StudentInfo} />
       </main>
     </div>
-  </Router>,
+  </Router>
+  </>,
   document.getElementById('root')
 );
 

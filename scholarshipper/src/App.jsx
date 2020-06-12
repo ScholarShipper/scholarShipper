@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import logo from './assets/ScholarShipperIcon_.png';
 import { LinkContainer } from 'react-router-bootstrap';
-import Student from './Student';
+import Student from './components/Student';
 const { ipcRenderer } = window.require('electron');
 // const BrowserWindow = electron.remote.BrowserWindow
 // import NavBar from './components/NavBar.jsx';
@@ -17,7 +17,6 @@ function App(props) {
             <img src={logo} alt="Logo" height='150' width='150'></img>
           </a>
         </div>
-
         <div>
           <br></br>
           <LinkContainer className="login" to="/Cohort">
