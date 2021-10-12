@@ -27,7 +27,7 @@
     "bootstrap": "^4.5.0",
     "bulma": "^0.8.2",
     "cross-env": "^7.0.2",
-    "electron": "^9.0.1",
+    "electron": "^11.5.0",
     "electron-is-dev": "^1.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
